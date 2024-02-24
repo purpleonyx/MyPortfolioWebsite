@@ -1,0 +1,60 @@
+@font-face {
+    font-family: teko-light;
+    src: url(fonts/Teko-Light.ttf);
+}
+
+body {
+    background-image: url(images/background.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+nav {
+    margin: 100px 100px 50px 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#main-logo {
+    width: 224px;
+    
+}
+
+.top-nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.navlink {
+    font-family: teko-light;
+    font-size: 42px;
+    margin-right: 50px;
+    text-decoration: none;
+    color: #F6EEE1;
+}
+
+.navlink:hover {
+    color: #b1a99d;
+}
+
+.dropdown {
+    margin-top: -10px;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 100px;
+}
+
+#headings {
+    width: 645px;
+}
+
+#self-picture {
+    width: 433px;
+    margin-right: 50px;
+}

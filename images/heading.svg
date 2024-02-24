@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 645.64 379.81">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fdad16;
+        font-family: Teko-Regular, Teko;
+        font-size: 96.63px;
+      }
+
+      .cls-2 {
+        fill: #fa6138;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #fa6138;
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <text class="cls-1" transform="translate(74.29 78.56)"><tspan x="0" y="0">Graphic Designer</tspan></text>
+      <text class="cls-1" transform="translate(251.88 166.19)"><tspan x="0" y="0">Web Designer</tspan></text>
+      <text class="cls-1" transform="translate(.97 260.59)"><tspan x="0" y="0">FrontEnd/BackEnd</tspan></text>
+      <text class="cls-1" transform="translate(78.83 341.73)"><tspan x="0" y="0">Developer</tspan></text>
+      <line class="cls-3" y1="140.48" x2="224.11" y2="140.48"/>
+      <circle class="cls-2" cx="40.32" cy="52.86" r="11.88"/>
+      <g>
+        <path class="cls-2" d="m40.61,284.89c1.98,10.33,2.44,20.73,2.5,31.18-.05,10.45-.51,20.85-2.5,31.18-1.99-10.33-2.45-20.73-2.5-31.18.06-10.45.52-20.85,2.5-31.18h0Z"/>
+        <path class="cls-2" d="m71.5,315.78c-10.33,1.98-20.73,2.44-31.18,2.5-10.45-.05-20.85-.51-31.18-2.5,10.33-1.99,20.73-2.45,31.18-2.5,10.45.06,20.85.52,31.18,2.5h0Z"/>
+        <path class="cls-2" d="m62.46,293.94c-5.91,8.7-12.94,16.38-20.28,23.82-7.43,7.35-15.11,14.38-23.82,20.28,5.9-8.71,12.93-16.39,20.28-23.82,7.44-7.35,15.11-14.37,23.82-20.28h0Z"/>
+        <path class="cls-2" d="m62.46,337.62c-8.7-5.91-16.38-12.94-23.82-20.28-7.35-7.43-14.38-15.11-20.28-23.82,8.71,5.9,16.39,12.93,23.82,20.28,7.35,7.44,14.37,15.11,20.28,23.82h0Z"/>
+      </g>
+    </g>
+  </g>
+</svg>
