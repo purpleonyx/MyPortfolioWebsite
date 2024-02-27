@@ -34,7 +34,7 @@ body {
 .bckg-element {
     width: 100%;
     position: fixed;
-    top: 600px;
+    top: 1000px;
     left: 0px;
 }
 
@@ -99,7 +99,7 @@ nav {
 
 .ab-title {
     font-family: teko-light;
-    font-size: 6vw;
+    font-size: 80px;
     margin-right: 50px;
     text-decoration: none;
     color: #FDAD16;
@@ -109,7 +109,7 @@ nav {
     opacity: 0;
     filter: blur(5px);
     transform: translateX(-100%);
-    transition: all 1s;
+    transition: all 750ms;
 }
 
 .show {
@@ -127,14 +127,86 @@ nav {
 }
 
 .ab-text {
+    display: grid;
+    grid-template-columns: 55px auto 55px auto 55px;
+    grid-template-rows: 55px auto 55px;
     margin: 10px 100px;
-    padding: 25px;
     border: 3px solid rgba(235, 235, 235, 0.2);
     background: linear-gradient(305deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 100%);
     backdrop-filter: blur(40px);
-    border-radius: 15px;
+    border-radius: 20px;
     position: relative;
     z-index: 2;
+    color: #F6EEE1;
+    font-family: roboto;
+}
+
+#text1 {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+#text2 {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 4;
+    grid-column-end: 5;
+}
+
+.exp-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px 100px;
+    padding: 45px;
+    border: 3px solid rgba(235, 235, 235, 0.2);
+    background: linear-gradient(305deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 100%);
+    backdrop-filter: blur(40px);
+    border-radius: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.exp-header {
+    display: flex;
+    align-items: end;
+    gap: 20px;
+}
+
+.exp-year {
+    font-family: teko-light;
+    font-size: 35px;
+    text-decoration: none;
+    color: #F6EEE1;
+}
+
+.exp-pointer {
+    width: 33px;
+    align-self: center;
+}
+
+.exp-title {
+    font-family: teko-light;
+    font-size: 45px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #F6EEE1
+}
+
+.exp-ab-text {
+    margin-left: 235px;
+    margin-right: 235px;
+}
+
+.exp-w-place {
+    color: #F6EEE1;
+    font-family: roboto;
+    font-weight: 500;
+}
+
+.exp-ab-text p {
     color: #F6EEE1;
     font-family: roboto;
 }
