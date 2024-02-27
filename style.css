@@ -3,6 +3,11 @@
     src: url(fonts/Teko-Light.ttf);
 }
 
+@font-face {
+    font-family: roboto;
+    src: url(fonts/Roboto-Regular.ttf);
+}
+
 body {
     background-image: url(images/background.svg);
     background-size: cover;
@@ -79,4 +84,57 @@ nav {
 #self-picture {
     width: 433px;
     margin-right: 50px;
+}
+
+.about {
+    display: flex;
+    align-items: center;
+    margin: 100px 100px 0px 100px;
+}
+
+#ab-title-element {
+    width: 30px;
+    margin: 0px 25px;
+}
+
+.ab-title {
+    font-family: teko-light;
+    font-size: 6vw;
+    margin-right: 50px;
+    text-decoration: none;
+    color: #FDAD16;
+}
+
+.hidden {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100%);
+    transition: all 1s;
+}
+
+.show {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+}
+
+.anim:nth-child(2) {
+    transition-delay: 200ms;
+}
+
+.anim:nth-child(3) {
+    transition-delay: 400ms;
+}
+
+.ab-text {
+    margin: 10px 100px;
+    padding: 25px;
+    border: 3px solid rgba(235, 235, 235, 0.2);
+    background: linear-gradient(305deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 100%);
+    backdrop-filter: blur(40px);
+    border-radius: 15px;
+    position: relative;
+    z-index: 2;
+    color: #F6EEE1;
+    font-family: roboto;
 }
