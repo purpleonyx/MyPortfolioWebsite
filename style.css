@@ -38,6 +38,10 @@ body {
     left: 0px;
 }
 
+.bckg-element2 {
+    display: none;
+}
+
 nav {
     margin: 80px 100px 50px 100px;
     display: flex;
@@ -201,6 +205,34 @@ nav {
     }
 }
 
+@media screen and (max-width: 500px) {
+    #mini-navb {
+        padding: 20px 25px;
+    }
+
+    .hero {
+        flex-direction: column;
+        margin: 0px 25px;
+    }
+
+    #headings {
+        width: 370px;
+    }
+
+    #self-picture {
+        width: 310px;
+        margin-top: 45px;
+    }
+
+    #main-logo {
+        width: 180px;
+    } 
+
+    .bckg-element {
+        width: 300%;
+        top: 1400px;
+    }
+}
 
 /****************
 **** CONTENT ****
@@ -211,7 +243,7 @@ nav {
     margin: 100px 100px 0px 100px;
 }
 
-#ab-title-element {
+.ab-title-element {
     width: 30px;
     margin: 0px 25px;
     filter: drop-shadow(0px 0px 5px #0a250bba);
@@ -428,5 +460,110 @@ nav {
 
     .footer {
         padding: 50px 50px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .bckg-element2 {
+        display: block;
+        width: 250%;
+        position: fixed;
+        top: 3500px;
+        left: 0px;
+    }
+
+    .about {
+        margin: 60px 25px 0px 25px;
+    }
+    
+    .ab-title-element {
+        width: 20px;
+        margin-top: -10px;
+        margin-right: 15px;
+    }
+
+    .ab-title {
+        font-size: 50px;
+    } 
+
+    .ab-text {
+        display: flex;
+        flex-direction: column;
+        padding: 25px;
+        gap: 10px;
+        margin: 10px 25px;
+    }
+
+    #text1, #text2 {
+        font-size: 22px;
+    }
+
+    .exp-header {
+        flex-direction: column;
+        align-items: start;
+        gap: 0px;
+    }
+
+    .exp-text {
+        margin: 10px 25px;
+        padding: 25px;
+    }
+
+    .exp-pointer {
+        display: none;
+    }
+
+    .exp-ab-text {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .exp-year {
+        font-size: 35px;
+    }
+
+    .exp-title {
+        font-size: 45px;
+    }
+
+    .exp-w-place {
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .exp-ab-text p {
+        font-size: 22px;
+        margin-bottom: 0px;
+    }
+
+    .footer {
+        flex-direction: column-reverse;
+        align-items: start;
+        padding: 25px;
+    }
+
+    .sm-link {
+        margin: 0px 15px 25px 0px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #headings {
+        width: 330px;
+    }
+
+    .ab-title-element {
+        margin: 0px;
+        margin-right: 15px;
+    }
+
+    .bckg-element {
+        width: 300%;
+        top: 900px;
+    }
+
+    .bckg-element2 {
+        width: 300%;
+        top: 3000px;
     }
 }
