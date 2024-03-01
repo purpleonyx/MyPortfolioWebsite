@@ -42,6 +42,13 @@ body {
     display: none;
 }
 
+.bckg-element-c {
+    width: 100%;
+    position: fixed;
+    top: 100px;
+    left: 0px;
+}
+
 nav {
     margin: 80px 100px 50px 100px;
     display: flex;
@@ -164,6 +171,12 @@ nav {
         top: 600px;
     }
 
+    .bckg-element-c {
+        width: 140%;
+        position: fixed;
+        top: 100px;
+    }
+
     #self-picture {
         margin-right: 20px;
     }
@@ -178,6 +191,12 @@ nav {
         width: 160%;
         position: fixed;
         top: 500px;
+    }
+
+    .bckg-element-c {
+        width: 160%;
+        position: fixed;
+        top: 50px;
     }
 }
 
@@ -202,6 +221,11 @@ nav {
 
     #self-picture {
         width: 250px;
+    }
+
+    .bckg-element-c {
+        width: 300%;
+        top: 100px;
     }
 }
 
@@ -609,10 +633,6 @@ nav {
     transition: transform .2s;
 }
 
-#html-n-css:hover {
-    transform: scale(1.1);
-}
-
 .skill-logo:hover {
     transform: scale(1.1);
 }
@@ -645,4 +665,95 @@ figcaption {
     font-size: 20px;
     text-decoration: none;
     color: #F6EEE1
+}
+
+
+/******************
+***** CONTACT *****
+*******************/
+.c-links {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 50px 0px;
+}
+
+.cont {
+    box-sizing: border-box;
+    width: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin: 30px 60px 30px 0px;
+    padding: 25px;
+    border: 3px solid rgba(235, 235, 235, 0.2);
+    background: linear-gradient(305deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 100%);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border-radius: 20px;
+    transition: transform .2s;
+}
+
+.cont:hover {
+    transform: scale(1.1);
+}
+
+.cont-icon {
+    width: 70px;
+    height: auto;
+    margin: 0px 20px 0px 0px;
+}
+
+.cont-text {
+    font-family: teko-light;
+    font-size: 45px;
+    text-decoration: none;
+    color: #F6EEE1
+}
+
+.cont-text:hover {
+    color: #b1a99d;
+}
+
+@media screen and (max-width: 661px) {
+    .cont-text {
+        font-size: 30px;
+    }
+
+    .cont {
+        padding: 15px;
+        width: 100%;
+        margin: 30px 0px;
+    }
+
+    .cont-icon {
+        width: 60px;
+    }
+
+    .s-hero {
+        margin: 50px 50px 0px 50px;
+    }
+
+    .s-headings {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 490px) {
+    .s-headings {
+        width: 350px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .s-hero {
+        margin: 60px 40px 0px 40px;
+    }
+    
+    .s-headings {
+        width: 350px;
+    }
+
+    .c-links {
+        margin: 25px 0px;
+    }
 }
