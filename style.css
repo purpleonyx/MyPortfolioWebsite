@@ -610,13 +610,14 @@ nav {
 
 .skills {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    flex-wrap: wrap;
     align-items: center;
 }
 
 .skill-logo {
     box-sizing: border-box;
-    width: 180px;
+    width: 165px;
     height: 180px;
     display: flex;
     flex-direction: column;
@@ -648,6 +649,9 @@ figcaption {
 }
 
 .project {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
     margin: 50px 0px;
 }
 
@@ -665,6 +669,26 @@ figcaption {
     font-size: 20px;
     text-decoration: none;
     color: #F6EEE1
+}
+
+.brandbook-download {
+    width: 250px;
+    transition: transform .2s;
+}
+
+.brandbook-download:hover {
+    transform: scale(1.1);
+}
+
+.pr-images {
+    display: flex;
+    justify-content: space-between;
+    /* flex-wrap: wrap; */
+    gap: 25px;
+}
+
+.pr-images-1 {
+    width: 49%;
 }
 
 
