@@ -613,6 +613,7 @@ nav {
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
+    margin-top: 35px;
 }
 
 .skill-logo {
@@ -636,6 +637,14 @@ nav {
 
 .skill-logo:hover {
     transform: scale(1.1);
+}
+
+.logo-mini {
+    width: 90px;
+}
+
+.logo-big {
+    width: 120px;
 }
 
 figcaption {
@@ -683,12 +692,52 @@ figcaption {
 .pr-images {
     display: flex;
     justify-content: space-between;
-    /* flex-wrap: wrap; */
     gap: 25px;
 }
 
 .pr-images-1 {
     width: 49%;
+}
+
+@media screen and (max-width: 500px) {
+    .s-hero {
+        margin: 100px 25px 0px 25px;
+    }
+
+    .logo-mini {
+        width: 80px;
+    }
+
+    .logo-big {
+        width: 100px;
+    }
+
+    .skill-logo {
+        width: 145px;
+        margin: 10px;
+    }
+
+    .project {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .project-name {
+        font-size: 35px;
+        width: 300px;
+    }
+
+    .project-description {
+        width: 320px;
+    }
+
+    .pr-images {
+        flex-wrap: wrap;
+    }
+
+    .pr-images-1 {
+        width: 100%;
+    }
 }
 
 
