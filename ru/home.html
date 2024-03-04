@@ -34,6 +34,15 @@
         font-family: unbound;
         src: url(/fonts/Unbounded-Regular.ttf);
         }
+
+        #temp-btn {
+            text-decoration: none;
+            transition: transform .2s;
+        }
+
+        #temp-btn:hover {
+            transform: scale(1.1);
+        }
     </style>
 
     <body>
@@ -85,9 +94,9 @@
                 </div>
             </nav> -->
 
-            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 200px 0px;">
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 200px 10px;">
                 <h2 style="font-family: unbound; color: #FDAD16; font-size: 35px; font-weight: bold;">СКОРО...</h2>
-                <a href="/home.html"><h2 style="text-decoration: none; font-family: unbound; color: #F6EEE1; font-size: 15px;">Вернуться на английскую версию сайта</h2></a>
+                <a href="/home.html" id="temp-btn"><h2 style="font-family: unbound; color: #333333; font-size: 15px; box-sizing: border-box; width: 100%; text-align: center; padding: 15px; border: 3px solid rgba(235, 235, 235, 0.2); background: linear-gradient(45deg, rgba(218,218,218,1) 0%, rgba(255,255,255,1) 100%); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); border-radius: 20px;">Вернуться на английскую версию сайта</h2></a>
             </div>
 
         </div>
