@@ -606,6 +606,7 @@ nav {
 
 .s-headings {
     width: 500px;
+    margin-bottom: 35px;
 }
 
 .skills {
@@ -613,7 +614,7 @@ nav {
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
-    margin-top: 35px;
+    gap: 20px;
 }
 
 .skill-logo {
@@ -624,7 +625,7 @@ nav {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    margin: 30px 10px;
+    margin: 0px;
     padding: 25px;
     padding-bottom: 13px;
     border: 3px solid rgba(235, 235, 235, 0.2);
@@ -677,7 +678,8 @@ figcaption {
     font-family: roboto;
     font-size: 20px;
     text-decoration: none;
-    color: #F6EEE1
+    color: #F6EEE1;
+    margin: 0px 0px 20px 0px;
 }
 
 .brandbook-download {
@@ -699,6 +701,31 @@ figcaption {
     width: 49%;
 }
 
+@media screen and (max-width: 1000px) {
+    .project-description {
+        width: 450px;
+    }
+
+    .pr-images {
+        flex-wrap: wrap;
+    }
+
+    .pr-images-1 {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 860px) {
+    .project {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .project-description {
+        width: 100%;
+    }
+}
+
 @media screen and (max-width: 500px) {
     .s-hero {
         margin: 100px 25px 0px 25px;
@@ -714,29 +741,52 @@ figcaption {
 
     .skill-logo {
         width: 145px;
-        margin: 10px;
-    }
-
-    .project {
-        flex-direction: column;
-        align-items: flex-start;
+        height: 175px;
     }
 
     .project-name {
         font-size: 35px;
         width: 300px;
     }
+}
 
-    .project-description {
-        width: 320px;
+@media screen and (max-width: 390px) {
+    .s-hero {
+        margin: 100px 25px 0px 25px;
     }
 
-    .pr-images {
-        flex-wrap: wrap;
+    .skills {
+        gap: 15px;
     }
 
-    .pr-images-1 {
-        width: 100%;
+    .logo-mini {
+        width: 75px;
+    }
+
+    .logo-big {
+        width: 95px;
+    }
+
+    .skill-logo {
+        width: 140px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .skills {
+        gap: 10px;
+    }
+
+    .logo-mini {
+        width: 70px;
+    }
+
+    .logo-big {
+        width: 90px;
+    }
+
+    .skill-logo {
+        width: 130px;
     }
 }
 
