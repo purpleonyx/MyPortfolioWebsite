@@ -34,19 +34,10 @@
         font-family: unbound;
         src: url(/fonts/Unbounded-Regular.ttf);
         }
-
-        #temp-btn {
-            text-decoration: none;
-            transition: transform .2s;
-        }
-
-        #temp-btn:hover {
-            transform: scale(1.1);
-        }
     </style>
 
     <body>
-        <!-- <div class="parallax">
+        <div class="parallax">
             <img src="/images/bcgrd-elements2.svg" class="bckg-element parallax-layer-back">
             <img src="/images/bcgrd-elements2.svg" class="bckg-element2 parallax-layer-back">
         
@@ -59,15 +50,15 @@
             
                   <div class="navbar-collapse collapse" id="navbarsExample01">
                     <div class="top-nav-links-mini">
-                        <a class="navlink" href="#">ПОРТФОЛИО</a>
-                        <a class="navlink" href="#">КОНТАКТЫ</a>
+                        <a class="navlink-ru" style="margin-right: 0px;" href="/ru/portfolio.html">ПОРТФОЛИО</a>
+                        <a class="navlink-ru" style="margin-right: 0px;" href="/ru/contact.html">КОНТАКТЫ</a>
                         <div class="dropdown">
-                            <a style="border: 3px solid #F6EEE1; border-radius: 15px; background-color: transparent; font-family: teko-light; font-size: 35px; padding: 0px 13px 0px 14px; height: auto; margin-top: 20px;" class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            ENG
+                            <a style="border: 3px solid #F6EEE1; border-radius: 15px; background-color: transparent; font-family: unbound; font-size: 22px; padding: 0px 13px 0px 14px; height: auto; margin-top: 20px;" class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            RUS
                             </a>
                             <ul style="min-width: 120px;" class="dropdown-menu dropdown-menu-dark">
-                                <li><a style="font-family: teko-light; font-size: 32px; text-align: center;" class="dropdown-item active" href="#">ENG</a></li>
-                                <li><a style="font-family: teko-light; font-size: 32px; text-align: center;" class="dropdown-item" href="/ru/home.html">RUS</a></li>
+                                <li><a style="font-family: unbound; font-size: 22px; text-align: center;" class="dropdown-item active" href="#">RUS</a></li>
+                                <li><a style="font-family: unbound; font-size: 22px; text-align: center;" class="dropdown-item" href="/home.html">ENG</a></li>
                             </ul>
                         </div>
                     </div>
@@ -79,24 +70,131 @@
                 <img src="/images/logo.svg" alt="Shokarimov Odilbek Main Logo" id="main-logo">
 
                 <div class="top-nav-links">
-                    <a class="navlink" href="#">ПОРТФОЛИО</a>
-                    <a class="navlink" href="#">КОНТАКТЫ</a>
+                    <a class="navlink-ru" href="/ru/portfolio.html">ПОРТФОЛИО</a>
+                    <a class="navlink-ru" href="/ru/contact.html">КОНТАКТЫ</a>
 
                     <div class="dropdown">
                         <a style="border: 3.5px solid #F6EEE1; border-radius: 20px; background-color: transparent; font-family: teko-light; font-size: 42px; padding: 0px 13px 0px 14px; height: 62px;" class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        ENG
+                        RUS
                         </a>
                         <ul style="min-width: 120px;" class="dropdown-menu dropdown-menu-dark">
-                            <li><a style="font-family: teko-light; font-size: 32px; text-align: center;" class="dropdown-item active" href="#">ENG</a></li>
-                            <li><a style="font-family: teko-light; font-size: 32px; text-align: center;" class="dropdown-item" href="/ru/home.html">RUS</a></li>
+                            <li><a style="font-family: unbound; font-size: 24px; text-align: center;" class="dropdown-item active" href="#">RUS</a></li>
+                            <li><a style="font-family: unbound; font-size: 24px; text-align: center;" class="dropdown-item" href="/home.html">ENG</a></li>
                         </ul>
                     </div>
                 </div>
-            </nav> -->
+            </nav>
 
-            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 200px 10px;">
-                <h2 style="font-family: unbound; color: #FDAD16; font-size: 35px; font-weight: bold;">СКОРО...</h2>
-                <a href="/home.html" id="temp-btn"><h2 style="font-family: unbound; color: #333333; font-size: 15px; box-sizing: border-box; width: 100%; text-align: center; padding: 15px; border: 3px solid rgba(235, 235, 235, 0.2); background: linear-gradient(45deg, rgba(218,218,218,1) 0%, rgba(255,255,255,1) 100%); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); border-radius: 20px;">Вернуться на английскую версию сайта</h2></a>
+            <div class="hero parallax-layer-base">
+                <img src="/images/heading-ru.svg" id="headings" alt="Graphic Designer, Web Designer, FrontEnd/BackEnd Developer">
+                <img src="/images/portrait.png" id="self-picture" alt="Picture of Odilbek Shokarimov">
+            </div>
+
+            <div class="about hidden parallax-layer-base">
+                <img src="/images/ab-element.svg" class="ab-title-element" class="hidden anim">
+                <h2 class="ab-title-ru hidden anim">Об Авторе</h2>
+            </div>
+
+            <div class="ab-text parallax-layer-base">
+                <p id="text1">Привет, я Одилбек - графический и веб-дизайнер. 
+                    Я изучал Computer Science в UA92 в Манчестере, Великобритания. Я родился и вырос в 
+                    Андижане, но в данный момент живу в Ташкенте. 
+                    Мне 25 лет, и у меня весьма богатый опыт работы в Графическом дизайне. Я 
+                    начал изучать фронтенд-разработку в Сентябре 2023-года. Однако я уже 
+                    накопил большой опыт и самостоятельно разработал несколько веб-сайтов с нуля.</p>
+                <p id="text2">У меня флегматичный темперамент. Я продуктивен и чувствую себя 
+                    комфортно, как и в индивидуальной, так и в командной обстановке. 
+                    Пунктуальность, порядочность и большое терпение помогают мне 
+                    выполнять мои обязанности качественно и с аккуратностью.
+                    Я общительный и социальный, высоко уважаю старших и старших по званию. У 
+                    меня очень хорошее чувство юмора что делает меня весьма стрессоустойчивым.
+                    Тем не менее, мое упорство и настойчивость движет мною в 
+                    достижении моих целей, что помогает мне всегда доводить мои дела до конца.</p>
+            </div>
+
+            <div class="about hidden parallax-layer-base">
+                <img src="/images/ab-element.svg" class="ab-title-element" class="hidden anim">
+                <h2 class="ab-title-ru hidden anim">Опыт работы</h2>
+            </div>
+
+            <div class="exp-text-ru parallax-layer-base">
+                <div class="exp-header-ru1">
+                    <h2 class="exp-year-ru">2021.12 - 2023.08</h2>
+                    <img src="/images/pointer.svg" class="exp-pointer-ru">
+                </div>
+                <div class="exp-ab-text-ru">
+                    <h2 class="exp-title-ru">Графический Дизайнер</h2>
+                    <h4 class="exp-w-place">Top Congress Design & Management - Ташкент, УЗБ</h4>
+                    <p> Как графический дизайнер 
+                        я создавал концепции визуального текста и изображений 
+                        вручную и/или с помощью компьютерных программ, таких как 
+                        Adobe Illustrator, CorelDraw и Adobe Photoshop. Я также 
+                        разрабатывал общий макет и дизайн изготовления баннеров, 
+                        музейных стендов, рекламы, брошюр, журналов, и т. д. Кроме 
+                        того, были такие задачи, как разработка логотипов.</p>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="exp-header-ru2">
+                    <h2 class="exp-year-ru">2019.08 - 2020.04</h2>
+                    <img src="/images/pointer.svg" class="exp-pointer-ru">
+                </div>
+                <div class="exp-ab-text-ru">
+                    <h2 class="exp-title-ru">Учитель Английского языка</h2>
+                    <h4 class="exp-w-place">Учебный центр 'Good Club' - Андижан, УЗБ</h4>
+                    <p>Как учитель, я учил студентов Английскому и Русскому языку. Уроки были по 
+                        полтара часа, в одной группе было, в среднем, по 12 учащихся. 
+                        Как учитель Английского языка я учил от уровня «Beginner» до 
+                        «Intermediate», а также проводил Pre-IELTS курсы. Как учитель 
+                        Русского языка я учил от уровня “Начинающий” до уровня 
+                        “Базовый”.</p>
+                </div>
+            </div>
+
+            <div class="about hidden parallax-layer-base">
+                <img src="/images/ab-element.svg" class="ab-title-element" class="hidden anim">
+                <h2 class="ab-title-ru hidden anim">Образование</h2>
+            </div>
+
+            <div class="exp-text-ru parallax-layer-base">
+                <div class="exp-header-ru1">
+                    <h2 class="exp-year-ru">2023.09 - 2024.02</h2>
+                    <img src="/images/pointer.svg" class="exp-pointer-ru">
+                </div>
+                <div class="exp-ab-text-ru">
+                    <h2 class="exp-title-ru">Front-End/Back-End Разработка</h2>
+                    <h4 class="exp-w-place">University Academy 92 - Манчестер, Великобритания</h4>
+                    <p>Курс включал такие модули, как Front & Back End Development, где я изучил основы и основные навыки веб-разработки.</p>
+                </div>
+
+                <br><br>
+
+                <div class="exp-header-ru2">
+                    <h2 class="exp-year-ru">2018.09 - 2022.06</h2>
+                    <img src="/images/pointer.svg" class="exp-pointer-ru">
+                </div>
+                <div class="exp-ab-text-ru">
+                    <h2 class="exp-title-ru">Иностранный язык и Литература Английского языка</h2>
+                    <h4 class="exp-w-place">Узбекский Государственный Университет Мировых Языков - Ташкент, УЗБ</h4>
+                    <p>В 2023 году я получил степень бакалавра по специальности преподаватель английского языка и литературы в Узбекском Государственном Университете Мировых Языков.</p>
+                </div>
+            </div>
+
+            <div class="footer parallax-layer-base">
+                <div class="foot-one">
+                    <img src="/images/logo.svg" alt="Shokarimov Odilbek Main Logo" id="main-logo">
+                    <p id="foot-text1">Дизайн и разработка данного сайта:</p>
+                    <p class="foot-text">Одилбек Шокаримов.</p>
+                    <p class="foot-text">© 2024 Все права защищены.</p> 
+                </div>
+
+                <div class="foot-three">
+                    <a href="https://www.linkedin.com/in/odilbek-shokarimov-9860941b2/" target="_blank"><img src="/images/lin-logo.svg" alt="View LinkedIn profile" class="sm-link"></a>
+                    <a href="https://www.instagram.com/gd_odilbek/" target="_blank"><img src="/images/inst-logo.svg" alt="View Instagram profile" class="sm-link"></a>
+                    <a href="https://twitter.com/Odilbek8010" target="_blank"><img src="/images/twitter-logo.svg" alt="View Twitter profile" class="sm-link"></a>
+                </div>
             </div>
 
         </div>
