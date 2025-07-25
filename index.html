@@ -5,28 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>o. shokarimov</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Inter & Teko -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
     
-    <!-- Favicon Links -->
     <link rel="icon" href="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/icons/favicon-32x32.png" type="image/png">
     
     <meta name="description" content="A portfolio website for Odilbek Shokarimov, showcasing skills in graphic design, web design, and development.">
     <meta name="author" content="Shokarimov Odilbek"/>
 
-    <!-- Custom Styles -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
             background-color: #0F172A; /* Slate 900 */
             color: #E2E8F0; /* Slate 200 */
         }
-
 
         /* Canvas for 3D background */
         #bg-canvas {
@@ -93,25 +88,19 @@
 </head>
 <body class="antialiased">
 
-    <!-- Custom Cursor Follower -->
     <div id="cursor-follower"></div>
 
-    <!-- 3D Background Canvas -->
     <canvas id="bg-canvas"></canvas>
 
-    <!-- Container -->
     <div class="relative z-10">
 
-        <!-- Header & Navigation -->
         <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/50 backdrop-blur-sm">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <nav class="flex justify-between items-center h-20">
-                    <!-- Logo -->
                     <a href="#">
                         <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/logo.svg" alt="Shokarimov Odilbek Main Logo" class="h-8 w-auto transition-transform hover:scale-105">
                     </a>
                     
-                    <!-- Desktop Navigation Links -->
                     <div class="hidden md:flex items-center space-x-8">
                         <div class="hidden md:flex items-center space-x-8" style="margin-bottom: -10px;">
                             <a href="#about" class="nav-link font-medium text-slate-300 hover:text-amber-400 transition-colors">ABOUT</a>
@@ -120,41 +109,46 @@
                             <a href="https://shokarimov.netlify.app/portfolio" class="nav-link font-medium text-slate-300 hover:text-amber-400 transition-colors">PORTFOLIO</a>
                         </div>
                         <a href="https://shokarimov.netlify.app/contact" class="glow-on-hover font-semibold bg-amber-500 text-slate-900 rounded-lg px-5 py-2.5">
-                           CONTACT
+                            CONTACT
                         </a>
                     </div>
 
-                    <!-- Mobile Menu Button (you would add JS to toggle this) -->
-                    <button class="md:hidden text-slate-300 hover:text-amber-400">
+                    <button id="menu-button" class="md:hidden text-slate-300 hover:text-amber-400">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                     </button>
                 </nav>
             </div>
+            <div id="mobile-menu" class="hidden md:hidden">
+                <div class="px-2 pt-2 pb-4 space-y-2 sm:px-3 flex flex-col items-center">
+                        <a href="#about" class="block w-full text-center py-2 rounded-md font-medium text-slate-300 hover:bg-slate-700 hover:text-amber-400">ABOUT</a>
+                        <a href="#experience" class="block w-full text-center py-2 rounded-md font-medium text-slate-300 hover:bg-slate-700 hover:text-amber-400">EXPERIENCE</a>
+                        <a href="#education" class="block w-full text-center py-2 rounded-md font-medium text-slate-300 hover:bg-slate-700 hover:text-amber-400">EDUCATION</a>
+                        <a href="https://shokarimov.netlify.app/portfolio" class="block w-full text-center py-2 rounded-md font-medium text-slate-300 hover:bg-slate-700 hover:text-amber-400">PORTFOLIO</a>
+                    <a href="https://shokarimov.netlify.app/contact" class="block w-full text-center mt-2 py-2 rounded-md font-semibold bg-amber-500 text-slate-900 hover:bg-amber-400">
+                        CONTACT
+                    </a>
+                </div>
+            </div>
         </header>
 
         <main>
-            <!-- Hero Section -->
             <section id="hero" class="min-h-screen flex items-center pt-20">
                  <div class="max-w-6xl mx-auto w-full flex flex-col-reverse md:flex-row items-center justify-center gap-8 md:gap-16 px-4">
-                    <!-- Text Content -->
                     <div class="text-center md:text-left">
                         <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight drop-shadow-2xl">
-                           Odilbek <span class="text-gradient">Shokarimov</span>
+                            Odilbek <span class="text-gradient">Shokarimov</span>
                         </h1>
                         <p class="mt-4 text-xl md:text-2xl text-slate-200 drop-shadow-lg max-w-xl">
-                            Graphic Designer, Web Designer & Full-Stack Developer
+                             Graphic Designer, Web Designer & Full-Stack Developer
                         </p>
                     </div>
-                     <!-- Image Placeholder -->
-                    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-slate-800/50 border-4 border-slate-700 flex-shrink-0 shadow-2xl">
-                        <img src="/images/profile_picture.png">
+                     <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-slate-800/50 border-4 border-slate-700 flex-shrink-0 shadow-2xl overflow-hidden">
+                        <img src="images/profile_picture.png" alt="Odilbek Shokarimov Profile Picture" class="w-full h-full object-cover">
                     </div>
                 </div>
             </section>
 
-            <!-- Main content container -->
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- About Section -->
                 <section id="about" class="my-24">
                     <h2 class="text-3xl font-bold text-center text-white mb-12">About Me</h2>
                     <div class="glass-card rounded-xl p-8 md:p-12 text-slate-300 leading-relaxed space-y-4 md:text-lg">
@@ -167,91 +161,95 @@
                     </div>
                 </section>
 
-                <!-- Experience Section -->
                 <section id="experience" class="my-24">
                      <h2 class="text-3xl font-bold text-center text-white mb-12">Experience</h2>
                      <div class="space-y-8">
-                        <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
-                            <div class="flex flex-col md:flex-row justify-between md:items-center">
-                                <h3 class="text-xl font-bold text-white">Graphic Designer</h3>
-                                <p class="text-amber-400 font-semibold mt-1 md:mt-0">2021.12 - 2023.08</p>
-                            </div>
-                            <p class="text-slate-400 mt-1">Top Congress Design & Management - Tashkent, UZB</p>
-                            <p class="mt-4 text-slate-300">
-                                Created diverse visual concepts and layouts for banners, brochures, corporate reports, and logos using Adobe Suite (Illustrator, Photoshop) and CorelDraw.
-                            </p>
-                        </div>
-                        <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
-                            <div class="flex flex-col md:flex-row justify-between md:items-center">
-                                <h3 class="text-xl font-bold text-white">Teacher of English and Russian</h3>
-                                 <p class="text-amber-400 font-semibold mt-1 md:mt-0">2019.08 - 2020.04</p>
-                            </div>
-                             <p class="text-slate-400 mt-1">'Good Club' Language School - Andijan, UZB</p>
-                            <p class="mt-4 text-slate-300">
-                               Taught English (Beginner to Pre-IELTS) and Russian (Beginner/Elementary) to groups of students, developing lesson plans and fostering language acquisition.
-                            </p>
-                        </div>
+                         <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
+                             <div class="flex flex-col md:flex-row justify-between md:items-center">
+                                 <h3 class="text-xl font-bold text-white">Graphic Designer</h3>
+                                 <p class="text-amber-400 font-semibold mt-1 md:mt-0">2021.12 - 2023.08</p>
+                             </div>
+                             <p class="text-slate-400 mt-1">Top Congress Design & Management - Tashkent, UZB</p>
+                             <p class="mt-4 text-slate-300">
+                                 Created diverse visual concepts and layouts for banners, brochures, corporate reports, and logos using Adobe Suite (Illustrator, Photoshop) and CorelDraw.
+                             </p>
+                         </div>
+                         <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
+                             <div class="flex flex-col md:flex-row justify-between md:items-center">
+                                 <h3 class="text-xl font-bold text-white">Teacher of English and Russian</h3>
+                                  <p class="text-amber-400 font-semibold mt-1 md:mt-0">2019.08 - 2020.04</p>
+                             </div>
+                              <p class="text-slate-400 mt-1">'Good Club' Language School - Andijan, UZB</p>
+                             <p class="mt-4 text-slate-300">
+                                Taught English (Beginner to Pre-IELTS) and Russian (Beginner/Elementary) to groups of students, developing lesson plans and fostering language acquisition.
+                             </p>
+                         </div>
                      </div>
                 </section>
                 
-                <!-- Education Section -->
                 <section id="education" class="my-24">
                      <h2 class="text-3xl font-bold text-center text-white mb-12">Education</h2>
                      <div class="space-y-8">
-                        <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
-                            <div class="flex flex-col md:flex-row justify-between md:items-center">
-                                <h3 class="text-xl font-bold text-white">Full-Stack Development</h3>
-                                <p class="text-amber-400 font-semibold mt-1 md:mt-0">2023.09 - 2024.02</p>
-                            </div>
-                            <p class="text-slate-400 mt-1">University Academy 92 - Manchester, UK</p>
-                            <p class="mt-4 text-slate-300">
-                               Completed an intensive course covering the fundamentals and core skills of both Front-End and Back-End web development.
-                            </p>
-                        </div>
-                        <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
-                            <div class="flex flex-col md:flex-row justify-between md:items-center">
-                                <h3 class="text-xl font-bold text-white">BA in Foreign Language and Literature (English)</h3>
-                                 <p class="text-amber-400 font-semibold mt-1 md:mt-0">2018.09 - 2022.06</p>
-                            </div>
-                             <p class="text-slate-400 mt-1">Uzbekistan State World Languages University - Tashkent, UZB</p>
-                            <p class="mt-4 text-slate-300">
-                               Achieved a Bachelor's degree, building a strong foundation in English language, literature, and pedagogy.
-                            </p>
-                        </div>
+                         <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
+                             <div class="flex flex-col md:flex-row justify-between md:items-center">
+                                 <h3 class="text-xl font-bold text-white">Full-Stack Development</h3>
+                                 <p class="text-amber-400 font-semibold mt-1 md:mt-0">2023.09 - 2024.02</p>
+                             </div>
+                             <p class="text-slate-400 mt-1">University Academy 92 - Manchester, UK</p>
+                             <p class="mt-4 text-slate-300">
+                                 Completed an intensive course covering the fundamentals and core skills of both Front-End and Back-End web development.
+                             </p>
+                         </div>
+                         <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
+                             <div class="flex flex-col md:flex-row justify-between md:items-center">
+                                 <h3 class="text-xl font-bold text-white">BA in Foreign Language and Literature (English)</h3>
+                                  <p class="text-amber-400 font-semibold mt-1 md:mt-0">2018.09 - 2022.06</p>
+                             </div>
+                              <p class="text-slate-400 mt-1">Uzbekistan State World Languages University - Tashkent, UZB</p>
+                             <p class="mt-4 text-slate-300">
+                                Achieved a Bachelor's degree, building a strong foundation in English language, literature, and pedagogy.
+                             </p>
+                         </div>
                      </div>
                 </section>
             </div>
         </main>
 
-        <!-- Footer -->
         <footer class="text-center py-12 border-t border-slate-800/50 bg-slate-900/50">
              <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-center space-x-6 mb-6">
-                    <a href="https://www.linkedin.com/in/odilbek-shokarimov-9860941b2/" target="_blank" class="text-slate-400 hover:text-amber-400 transition-transform hover:scale-110">
-                        <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/lin-logo.svg" alt="LinkedIn" class="h-8 w-8 filter invert hover:invert-0">
-                    </a>
-                     <a href="https://www.instagram.com/gd_odilbek/" target="_blank" class="text-slate-400 hover:text-amber-400 transition-transform hover:scale-110">
-                        <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/inst-logo.svg" alt="Instagram" class="h-8 w-8 filter invert hover:invert-0">
-                    </a>
-                    <a href="https://twitter.com/Odilbek8010" target="_blank" class="text-slate-400 hover:text-amber-400 transition-transform hover:scale-110">
-                        <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/twitter-logo.svg" alt="Twitter" class="h-8 w-8 filter invert hover:invert-0">
-                    </a>
-                </div>
-                <p class="text-slate-500 text-sm">
-                    Designed & Built by Odilbek Shokarimov <br>
-                    © 2024 All rights reserved.
-                </p>
-            </div>
+                 <div class="flex justify-center space-x-6 mb-6">
+                     <a href="https://www.linkedin.com/in/odilbek-shokarimov-9860941b2/" target="_blank" class="text-slate-400 hover:text-amber-400 transition-transform hover:scale-110">
+                         <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/lin-logo.svg" alt="LinkedIn" class="h-8 w-8 filter invert hover:invert-0">
+                     </a>
+                      <a href="https://www.instagram.com/gd_odilbek/" target="_blank" class="text-slate-400 hover:text-amber-400 transition-transform hover:scale-110">
+                         <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/inst-logo.svg" alt="Instagram" class="h-8 w-8 filter invert hover:invert-0">
+                     </a>
+                     <a href="https://twitter.com/Odilbek8010" target="_blank" class="text-slate-400 hover:text-amber-400 transition-transform hover:scale-110">
+                         <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/twitter-logo.svg" alt="Twitter" class="h-8 w-8 filter invert hover:invert-0">
+                     </a>
+                 </div>
+                 <p class="text-slate-500 text-sm">
+                     Designed & Built by Odilbek Shokarimov <br>
+                     © 2024 All rights reserved.
+                 </p>
+             </div>
         </footer>
 
     </div>
     
-    <!-- Three.js Script -->
     <script type="importmap">
         { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js" } }
     </script>
     <script type="module">
         import * as THREE from 'three';
+
+        // --- Mobile Menu Toggle Logic ---
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
         // --- Custom Cursor Logic ---
         const cursorFollower = document.getElementById('cursor-follower');
