@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>o. shokarimov</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter & Teko -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Favicon Links -->
+    <link rel="icon" href="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/icons/favicon-32x32.png" type="image/png">
+    
+    <meta name="description" content="A portfolio website for Odilbek Shokarimov, showcasing skills in graphic design, web design, and development.">
+    <meta name="author" content="Shokarimov Odilbek"/>
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F172A; /* Slate 900 */
+            color: #E2E8F0; /* Slate 200 */
+        }
+
+
+        /* Canvas for 3D background */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place it behind all content */
+        }
+
+        /* Glassmorphism effect for cards */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5); /* Slate 800 with 50% opacity */
+            backdrop-filter: blur(25px); /* Increased blur for a glassier effect */
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(51, 65, 85, 0.5); /* Slate 700 with 50% opacity */
+        }
+        
+        /* Custom gradient for text */
+        .text-gradient {
+            background: linear-gradient(to right, #FBBF24, #F59E0B); /* Amber 400 to Amber 500 */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Navigation link hover effect */
+        .nav-link {
+            position: relative;
+            padding-bottom: 8px; /* space for the line */
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #FBBF24; /* Amber 400 */
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Futuristic glow effect for the contact button */
+        .glow-on-hover {
+            transition: all 0.3s ease-in-out;
+            border: 2px solid transparent;
+        }
+        .glow-on-hover:hover {
+            color: #ffffff;
+            box-shadow: 0 0 15px #FBBF24, 0 0 25px #F59E0B;
+            border-color: #FBBF24;
+            background-color: #F59E0B; /* Amber 500 on hover */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Custom Cursor Follower -->
+    <div id="cursor-follower"></div>
+
+    <!-- 3D Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Container -->
+    <div class="relative z-10">
+
+        <!-- Header & Navigation -->
+        <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/50 backdrop-blur-sm">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <nav class="flex justify-between items-center h-20">
+                    <!-- Logo -->
+                    <a href="#">
+                        <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/logo.svg" alt="Shokarimov Odilbek Main Logo" class="h-8 w-auto transition-transform hover:scale-105">
+                    </a>
+                    
+                    <!-- Desktop Navigation Links -->
+                    <div class="hidden md:flex items-center space-x-8">
+                        <div class="hidden md:flex items-center space-x-8" style="margin-bottom: -10px;">
+                            <a href="#about" class="nav-link font-medium text-slate-300 hover:text-amber-400 transition-colors">ABOUT</a>
+                            <a href="#experience" class="nav-link font-medium text-slate-300 hover:text-amber-400 transition-colors">EXPERIENCE</a>
+                            <a href="#education" class="nav-link font-medium text-slate-300 hover:text-amber-400 transition-colors">EDUCATION</a>
+                            <a href="https://shokarimov.netlify.app/portfolio" class="nav-link font-medium text-slate-300 hover:text-amber-400 transition-colors">PORTFOLIO</a>
+                        </div>
+                        <a href="https://shokarimov.netlify.app/contact" class="glow-on-hover font-semibold bg-amber-500 text-slate-900 rounded-lg px-5 py-2.5">
+                           CONTACT
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Button (you would add JS to toggle this) -->
+                    <button class="md:hidden text-slate-300 hover:text-amber-400">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <!-- Hero Section -->
+            <section id="hero" class="min-h-screen flex items-center pt-20">
+                 <div class="max-w-6xl mx-auto w-full flex flex-col-reverse md:flex-row items-center justify-center gap-8 md:gap-16 px-4">
+                    <!-- Text Content -->
+                    <div class="text-center md:text-left">
+                        <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight drop-shadow-2xl">
+                           Odilbek <span class="text-gradient">Shokarimov</span>
+                        </h1>
+                        <p class="mt-4 text-xl md:text-2xl text-slate-200 drop-shadow-lg max-w-xl">
+                            Graphic Designer, Web Designer & Full-Stack Developer
+                        </p>
+                    </div>
+                     <!-- Image Placeholder -->
+                    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-slate-800/50 border-4 border-slate-700 flex-shrink-0 shadow-2xl">
+                        <img src="/images/profile_picture.png">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main content container -->
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- About Section -->
+                <section id="about" class="my-24">
+                    <h2 class="text-3xl font-bold text-center text-white mb-12">About Me</h2>
+                    <div class="glass-card rounded-xl p-8 md:p-12 text-slate-300 leading-relaxed space-y-4 md:text-lg">
+                        <p>
+                            Skilled Graphic and Web Designer with a solid educational background in Computer Science from UA92 in Manchester, UK. Based in Tashkent, Uzbekistan, I bring a wealth of experience in graphic design and a rapidly growing expertise in full-stack web development.
+                        </p>
+                        <p>
+                            My calm and patient temperament allows me to be productive both in collaborative teams and working individually. I am punctual, detail-oriented, and committed to delivering high-quality work. My perseverance and good sense of humor help me tackle challenges effectively and achieve my goals.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Experience Section -->
+                <section id="experience" class="my-24">
+                     <h2 class="text-3xl font-bold text-center text-white mb-12">Experience</h2>
+                     <div class="space-y-8">
+                        <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
+                            <div class="flex flex-col md:flex-row justify-between md:items-center">
+                                <h3 class="text-xl font-bold text-white">Graphic Designer</h3>
+                                <p class="text-amber-400 font-semibold mt-1 md:mt-0">2021.12 - 2023.08</p>
+                            </div>
+                            <p class="text-slate-400 mt-1">Top Congress Design & Management - Tashkent, UZB</p>
+                            <p class="mt-4 text-slate-300">
+                                Created diverse visual concepts and layouts for banners, brochures, corporate reports, and logos using Adobe Suite (Illustrator, Photoshop) and CorelDraw.
+                            </p>
+                        </div>
+                        <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
+                            <div class="flex flex-col md:flex-row justify-between md:items-center">
+                                <h3 class="text-xl font-bold text-white">Teacher of English and Russian</h3>
+                                 <p class="text-amber-400 font-semibold mt-1 md:mt-0">2019.08 - 2020.04</p>
+                            </div>
+                             <p class="text-slate-400 mt-1">'Good Club' Language School - Andijan, UZB</p>
+                            <p class="mt-4 text-slate-300">
+                               Taught English (Beginner to Pre-IELTS) and Russian (Beginner/Elementary) to groups of students, developing lesson plans and fostering language acquisition.
+                            </p>
+                        </div>
+                     </div>
+                </section>
+                
+                <!-- Education Section -->
+                <section id="education" class="my-24">
+                     <h2 class="text-3xl font-bold text-center text-white mb-12">Education</h2>
+                     <div class="space-y-8">
+                        <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
+                            <div class="flex flex-col md:flex-row justify-between md:items-center">
+                                <h3 class="text-xl font-bold text-white">Full-Stack Development</h3>
+                                <p class="text-amber-400 font-semibold mt-1 md:mt-0">2023.09 - 2024.02</p>
+                            </div>
+                            <p class="text-slate-400 mt-1">University Academy 92 - Manchester, UK</p>
+                            <p class="mt-4 text-slate-300">
+                               Completed an intensive course covering the fundamentals and core skills of both Front-End and Back-End web development.
+                            </p>
+                        </div>
+                        <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
+                            <div class="flex flex-col md:flex-row justify-between md:items-center">
+                                <h3 class="text-xl font-bold text-white">BA in Foreign Language and Literature (English)</h3>
+                                 <p class="text-amber-400 font-semibold mt-1 md:mt-0">2018.09 - 2022.06</p>
+                            </div>
+                             <p class="text-slate-400 mt-1">Uzbekistan State World Languages University - Tashkent, UZB</p>
+                            <p class="mt-4 text-slate-300">
+                               Achieved a Bachelor's degree, building a strong foundation in English language, literature, and pedagogy.
+                            </p>
+                        </div>
+                     </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center py-12 border-t border-slate-800/50 bg-slate-900/50">
+             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-center space-x-6 mb-6">
+                    <a href="https://www.linkedin.com/in/odilbek-shokarimov-9860941b2/" target="_blank" class="text-slate-400 hover:text-amber-400 transition-transform hover:scale-110">
+                        <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/lin-logo.svg" alt="LinkedIn" class="h-8 w-8 filter invert hover:invert-0">
+                    </a>
+                     <a href="https://www.instagram.com/gd_odilbek/" target="_blank" class="text-slate-400 hover:text-amber-400 transition-transform hover:scale-110">
+                        <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/inst-logo.svg" alt="Instagram" class="h-8 w-8 filter invert hover:invert-0">
+                    </a>
+                    <a href="https://twitter.com/Odilbek8010" target="_blank" class="text-slate-400 hover:text-amber-400 transition-transform hover:scale-110">
+                        <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/twitter-logo.svg" alt="Twitter" class="h-8 w-8 filter invert hover:invert-0">
+                    </a>
+                </div>
+                <p class="text-slate-500 text-sm">
+                    Designed & Built by Odilbek Shokarimov <br>
+                    © 2024 All rights reserved.
+                </p>
+            </div>
+        </footer>
+
+    </div>
+    
+    <!-- Three.js Script -->
+    <script type="importmap">
+        { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js" } }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+
+        // --- Custom Cursor Logic ---
+        const cursorFollower = document.getElementById('cursor-follower');
+        
+        if (window.matchMedia('(hover: hover)').matches) {
+            window.addEventListener('mousemove', e => {
+                cursorFollower.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+            });
+        }
+
+
+        // --- Three.js Background Logic ---
+        let scene, camera, renderer;
+        const objects = [];
+
+        function init() {
+            // Scene setup
+            scene = new THREE.Scene();
+            
+            // Camera setup
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+
+            // Renderer setup
+            const canvas = document.getElementById('bg-canvas');
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+            scene.add(ambientLight);
+            const pointLight = new THREE.PointLight(0xffffff, 0.8);
+            pointLight.position.set(5, 5, 5);
+            scene.add(pointLight);
+
+            // Create floating objects
+            const geometry = new THREE.IcosahedronGeometry(1, 1);
+            const material = new THREE.MeshStandardMaterial({
+                color: 0x334155, // Slate 700
+                roughness: 0.5,
+                metalness: 0.8,
+                transparent: true,
+                opacity: 0.2
+            });
+
+            for (let i = 0; i < 15; i++) {
+                const mesh = new THREE.Mesh(geometry, material);
+                mesh.position.set(
+                    (Math.random() - 0.5) * 25,
+                    (Math.random() - 0.5) * 25,
+                    (Math.random() - 0.5) * 25
+                );
+                mesh.scale.setScalar(Math.random() * 0.5 + 0.2);
+                mesh.rotation.set(
+                    Math.random() * Math.PI,
+                    Math.random() * Math.PI,
+                    Math.random() * Math.PI
+                );
+                scene.add(mesh);
+                objects.push(mesh);
+            }
+            
+            // Create the dot field
+            const dotCount = 10000;
+            const positions = new Float32Array(dotCount * 3);
+            const dotGeometry = new THREE.BufferGeometry();
+
+            for(let i = 0; i < dotCount * 3; i++) {
+                positions[i] = (Math.random() - 0.5) * 50;
+            }
+            dotGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+            const dotMaterial = new THREE.PointsMaterial({
+                size: 0.025,
+                color: 0x475569 // Slate-600
+            });
+
+            const dots = new THREE.Points(dotGeometry, dotMaterial);
+            scene.add(dots);
+
+            // Event Listeners
+            window.addEventListener('resize', onWindowResize);
+            window.addEventListener('scroll', onScroll);
+
+            animate();
+        }
+
+        // Handle window resizing
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // Handle scroll for parallax
+        function onScroll() {
+            const scrollY = window.scrollY;
+            camera.position.y = -scrollY * 0.003; 
+        }
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Animate larger objects
+            objects.forEach(obj => {
+                obj.rotation.x += 0.001;
+                obj.rotation.y += 0.001;
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        init();
+    </script>
+</body>
+</html>

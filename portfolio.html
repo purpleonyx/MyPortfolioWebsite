@@ -1,177 +1,827 @@
-<!DOCTYPE html><html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>shokarimov o. - portfolio</title>
-        <link rel="apple-touch-icon" sizes="57x57" href="images/icons/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="images/icons/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="images/icons/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="images/icons/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="images/icons/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="images/icons/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="images/icons/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="images/icons/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="images/icons/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="images/icons/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon-16x16.png">
-        <link rel="manifest" href="images/icons/manifest.json">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="images/icons/ms-icon-144x144.png">
-        <meta name="theme-color" content="#ffffff">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Website made by myself as my own portfolio. Check out my projects to see what I'm capable of."/>
-        <meta name="author" content="Shokarimov Odilbek"/>
-        <meta property="og:image" content="https://github.com/purpleonyx/MyPortfolioWebsite/blob/a1d8cc5f4f9a84d2faccff6f347150feeb833dd6/images/sh_1000.png">
-        <link rel="stylesheet" href="style.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script defer src="index.js"></script>
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>o. shokarimov - portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Google Fonts: Inter & Teko -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Favicon Links -->
+    <link rel="icon" href="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/icons/favicon-32x32.png" type="image/png">
+    
+    <meta name="description" content="A portfolio website for Odilbek Shokarimov, showcasing skills in graphic design, web design, and development.">
+    <meta name="author" content="Shokarimov Odilbek"/>
+
+    <!-- Custom Styles -->
     <style>
-        @font-face {
-        font-family: teko-light;
-        src: url(fonts/Teko-Light.ttf);
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F172A; /* Slate 900 */
+            color: #E2E8F0; /* Slate 200 */
+        }
+
+        /* Canvas for 3D background */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Glassmorphism effect for cards */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+        }
+        
+        /* Navigation link hover effect */
+        .nav-link {
+            position: relative;
+            padding-bottom: 8px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #FBBF24;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Futuristic glow effect for buttons */
+        .glow-on-hover {
+            transition: all 0.3s ease-in-out;
+            border: 2px solid transparent;
+        }
+        .glow-on-hover:hover {
+            color: #ffffff;
+            box-shadow: 0 0 15px #FBBF24, 0 0 25px #F59E0B;
+            border-color: #FBBF24;
+            background-color: #F59E0B;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hide scrollbar for gallery */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        /* Lightbox styles */
+        .lightbox {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 85vh;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2.5rem;
+            color: #fff;
+            font-size: 3rem;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .lightbox-close:hover, .lightbox-close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .lightbox-nav {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 2.5rem;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .lightbox-prev { left: 0; border-radius: 3px 0 0 3px;}
+        .lightbox-next { right: 0; border-radius: 0 3px 3px 0;}
+        .lightbox-prev:hover, .lightbox-next:hover {
+            background-color: rgba(251, 191, 36, 0.3);
+        }
+
+        /* Hide the scrollbar */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+        
+        /* Styles for the Image Modal (Lightbox) */
+        .modal {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+        }
+
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 0s;
+        }
+
+        .modal-content {
+            position: relative;
+            text-align: center;
+            max-width: 85vw;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 75vh;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .modal-caption {
+            margin-top: 15px;
+            color: #ccc;
+            font-size: 1.1rem;
+            max-width: 60ch;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -5px;
+            right: 5px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            z-index: 1002;
+        }
+        .close-modal:hover {
+            color: #fbbf24; /* amber-400 */
+        }
+
+        /* Navigation buttons inside the modal */
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(40, 40, 40, 0.7);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            z-index: 1001;
+        }
+        .modal-nav:hover {
+            background-color: rgba(251, 191, 36, 0.8); /* amber-400 with opacity */
+        }
+        .modal-nav.prev { left: 1rem; }
+        .modal-nav.next { right: 1rem; }
+
+        /* The track that contains the duplicated images */
+        .logo-gallery-track {
+            display: flex;
+            will-change: transform;
         }
     </style>
+</head>
+<body class="antialiased">
 
-    <body>
-        <div class="parallax">
-            <img src="images/bcgrd-elements2.svg" class="bckg-element parallax-layer-back">
-            <!-- <img src="images/bcgrd-elements2.svg" class="bckg-element2 parallax-layer-back"> -->
-        
-            <div id="mini-navb" style="background-color: #0A250B;" class="navbar navbar-dark" aria-label="First navbar example">
-                <div class="container-fluid">
-                    <img src="images/logo.svg" alt="Shokarimov Odilbek Main Logo" id="main-logo">
-                  <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-            
-                  <div class="navbar-collapse collapse" id="navbarsExample01">
-                    <div class="top-nav-links-mini">
-                        <a class="navlink" href="home.html">HOME</a>
-                        <a class="navlink" href="contact.html">CONTACT</a>
-                        <div class="dropdown">
-                            <a style="border: 3px solid #F6EEE1; border-radius: 15px; background-color: transparent; font-family: teko-light; font-size: 35px; padding: 0px 13px 0px 14px; height: auto; margin-top: 20px;" class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            ENG
-                            </a>
-                            <ul style="min-width: 120px;" class="dropdown-menu dropdown-menu-dark">
-                                <li><a style="font-family: teko-light; font-size: 32px; text-align: center;" class="dropdown-item active" href="#">ENG</a></li>
-                                <li><a style="font-family: teko-light; font-size: 32px; text-align: center;" class="dropdown-item" href="/ru/portfolio.html">RUS</a></li>
-                            </ul>
+    <!-- Custom Cursor Follower -->
+    <div id="cursor-follower"></div>
+
+    <!-- 3D Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Container -->
+    <div class="relative z-10">
+
+        <!-- Header & Navigation -->
+        <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/50 backdrop-blur-sm">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <nav class="flex justify-between items-center h-20">
+                    <!-- Logo -->
+                    <a href="index.html">
+                        <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/logo.svg" alt="Shokarimov Odilbek Main Logo" class="h-8 w-auto transition-transform hover:scale-105">
+                    </a>
+                    
+                    <!-- Desktop Navigation Links -->
+                    <div class="hidden md:flex items-center space-x-8">
+                        <div class="hidden md:flex items-center space-x-8" style="margin-bottom: -10px;">
+                            <a href="index.html" class="nav-link font-medium text-slate-300 hover:text-amber-400 transition-colors">HOME</a>
+                            <a href="#" class="nav-link font-medium text-amber-400">PORTFOLIO</a>
+                        </div>
+                        <a href="contact.html" class="glow-on-hover font-semibold bg-amber-500 text-slate-900 rounded-lg px-5 py-2.5">
+                           CONTACT
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Button (you would add JS to toggle this) -->
+                    <button class="md:hidden text-slate-300 hover:text-amber-400">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <main class="pt-24">
+            <!-- Main content container -->
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Skills Section -->
+                <section id="skills" class="my-16">
+                    <h2 class="text-3xl font-bold text-center text-white mb-12">My Skills</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                         <!-- Skill Card -->
+                        <div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-1">
+                            <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/html-logo.svg" alt="HTML Logo" class="h-16 mb-4">
+                            <h3 class="font-semibold text-white">HTML</h3>
+                        </div>
+                        <!-- Skill Card -->
+                        <div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-1">
+                            <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/css-logo.svg" alt="CSS Logo" class="h-16 mb-4">
+                            <h3 class="font-semibold text-white">CSS</h3>
+                        </div>
+                        <!-- Skill Card -->
+                        <div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-1">
+                            <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/php-logo.svg" alt="PHP Logo" class="h-16 mb-4">
+                            <h3 class="font-semibold text-white">PHP</h3>
+                        </div>
+                        <!-- Skill Card -->
+                        <div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-1">
+                            <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/mysql-logo.svg" alt="MySQL Logo" class="h-16 mb-4">
+                            <h3 class="font-semibold text-white">MySQL</h3>
+                        </div>
+                        <!-- Skill Card -->
+                        <div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-1">
+                            <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/ps-logo.svg" alt="Photoshop Logo" class="h-16 mb-4">
+                            <h3 class="font-semibold text-white">Adobe Photoshop</h3>
+                        </div>
+                        <!-- Skill Card -->
+                        <div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-1">
+                            <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/ai-logo.svg" alt="Illustrator Logo" class="h-16 mb-4">
+                            <h3 class="font-semibold text-white">Adobe Illustrator</h3>
+                        </div>
+                        <!-- Skill Card -->
+                        <div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-1">
+                            <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/ae-logo.svg" alt="After Effects Logo" class="h-16 mb-4">
+                            <h3 class="font-semibold text-white">Adobe After Effects</h3>
+                        </div>
+                        <!-- Skill Card -->
+                        <div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-1">
+                            <img src="/images/Adobe_Premiere_Pro_CC_icon.svg" alt="Premiere Pro Logo" class="h-16 mb-4">
+                            <h3 class="font-semibold text-white">Adobe Premiere Pro</h3>
                         </div>
                     </div>
-                  </div>
-                </div>
+                </section>
+
+                <!-- Projects Section -->
+                <section id="projects" class="my-24">
+                     <h2 class="text-3xl font-bold text-center text-white mb-12">My Projects</h2>
+                     <div class="space-y-16">
+                        
+                        <!-- Project Card - Hamkorbank -->
+                        <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
+                            <div class="flex flex-col md:flex-row justify-between md:items-start gap-6">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">HR Presentation for Hamkorbank</h3>
+                                    <p class="mt-2 text-slate-300 max-w-2xl">A corporate presentation designed for the HR department of Hamkorbank. Scroll or use the arrows to see more.</p>
+                                </div>
+                                <a href="#" id="hamkorbank-preview-btn" class="glow-on-hover whitespace-nowrap font-semibold bg-amber-500/80 text-white rounded-lg px-5 py-2.5 flex-shrink-0">Preview</a>
+                            </div>
+                            
+                            <!-- Scrollable Image Gallery -->
+                            <div class="relative mt-6">
+                                <div id="hamkorbank-gallery" class="flex overflow-x-auto snap-x snap-mandatory space-x-6 pb-4 no-scrollbar">
+                                    <img src="/images/1/design_second_translate-01.png" alt="Hamkorbank Presentation Slide 1" class="h-80 object-contain rounded-lg shadow-lg snap-center flex-shrink-0 hamkorbank-gallery-item">
+                                    <img src="/images/1/design_second_translate-02.png" alt="Hamkorbank Presentation Slide 2" class="h-80 object-contain rounded-lg shadow-lg snap-center flex-shrink-0 hamkorbank-gallery-item">
+                                    <img src="/images/1/design_second_translate-03.png" alt="Hamkorbank Presentation Slide 3" class="h-80 object-contain rounded-lg shadow-lg snap-center flex-shrink-0 hamkorbank-gallery-item">
+                                    <img src="/images/1/design_second_translate-04.png" alt="Hamkorbank Presentation Slide 4" class="h-80 object-contain rounded-lg shadow-lg snap-center flex-shrink-0 hamkorbank-gallery-item">
+                                    <img src="/images/1/design_second_translate-05.png" alt="Hamkorbank Presentation Slide 5" class="h-80 object-contain rounded-lg shadow-lg snap-center flex-shrink-0 hamkorbank-gallery-item">
+                                    <img src="/images/1/design_second_translate-06.png" alt="Hamkorbank Presentation Slide 6" class="h-80 object-contain rounded-lg shadow-lg snap-center flex-shrink-0 hamkorbank-gallery-item">
+                                    <img src="/images/1/design_second_translate-07.png" alt="Hamkorbank Presentation Slide 7" class="h-80 object-contain rounded-lg shadow-lg snap-center flex-shrink-0 hamkorbank-gallery-item">
+                                </div>
+                                <!-- Gallery Navigation Arrows -->
+                                <button id="hamkorbank-prev" class="absolute top-1/2 left-0 -translate-y-1/2 bg-slate-800/50 p-2 rounded-full text-white hover:bg-amber-500/80 transition-colors hidden sm:block">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                </button>
+                                <button id="hamkorbank-next" class="absolute top-1/2 right-0 -translate-y-1/2 bg-slate-800/50 p-2 rounded-full text-white hover:bg-amber-500/80 transition-colors hidden sm:block">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <!-- Project Card - Logos -->
+                            <!-- Main Card Component -->
+                            <div class="glass-card rounded-xl p-6 sm:p-8 transition-all duration-300 hover:border-amber-400/50 w-full max-w-6xl" style="background: rgba(40, 43, 56, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
+                                <div class="flex flex-col md:flex-row justify-between md:items-start gap-6">
+                                    <div>
+                                        <h3 class="text-xl font-bold text-white">Logo Design</h3>
+                                        <p class="mt-2 text-slate-300 max-w-2xl">A selection of original logos that combine clarity, symbolism, and brand personality. Drag to explore.</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Carousel Wrapper -->
+                                <div id="logo-gallery-wrapper" class="relative mt-6 group">
+                                    <!-- Navigation Arrows -->
+                                    <button id="logo-prev" class="absolute top-1/2 left-2 -translate-y-1/2 bg-slate-800/50 p-2 rounded-full text-white hover:bg-amber-500/80 transition-all z-10 opacity-0 group-hover:opacity-100 duration-300">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                    </button>
+                                    <button id="logo-next" class="absolute top-1/2 right-2 -translate-y-1/2 bg-slate-800/50 p-2 rounded-full text-white hover:bg-amber-500/80 transition-all z-10 opacity-0 group-hover:opacity-100 duration-300">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </button>
+
+                                    <div id="logo-gallery-track-container" class="overflow-hidden">
+                                        <div id="logo-gallery-track" class="logo-gallery-track space-x-6">
+                                            <!-- Images will be dynamically inserted here by JavaScript -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal Structure (hidden by default) -->
+                            <div id="image-modal" class="modal">
+                                <span id="close-modal-btn" class="close-modal">&times;</span>
+                                <button id="modal-prev" class="modal-nav prev">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                </button>
+                                <div class="modal-content">
+                                    <img id="modal-image" class="modal-image" src="" alt="Enlarged Logo">
+                                    <p id="modal-caption" class="modal-caption"></p>
+                                </div>
+                                <button id="modal-next" class="modal-nav next">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                </button>
+                            </div>
+
+                        <!-- Project Card Social Media Posts -->
+                        <!-- Main card component with the gallery -->
+                            <div class="glass-card rounded-xl p-6 sm:p-8 max-w-7xl mx-auto">
+                                <!-- Header section with title and button -->
+                                <div class="flex flex-col md:flex-row justify-between md:items-start gap-6">
+                                    <div>
+                                        <h3 class="text-xl font-bold text-white">Social Media Posts</h3>
+                                        <p class="mt-2 text-slate-300 max-w-2xl">A curated set of visuals designed to engage, inform, and reflect brand identity across digital platforms.</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Responsive Grid Image Gallery -->
+                                <div id="hamkorbank-gallery2" class="mt-6 grid grid-cols-2 md:grid-cols-3 gap-4">
+                                    <!-- Placeholder images are used here for demonstration -->
+                                    <img src="/images/3/9-december_post.jpg" alt="Presentation Slide 1" class="gallery-item2 w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                    <img src="/images/3/design_inv_2_RU.png" alt="Presentation Slide 2" class="gallery-item2 w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                    <img src="/images/3/design_invitation.png" alt="Presentation Slide 3" class="gallery-item2 w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                    <img src="/images/3/eid_congrats_telegram.jpg" alt="Presentation Slide 4" class="gallery-item2 w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                    <img src="/images/3/eid_telegram.jpg" alt="Presentation Slide 5" class="gallery-item2 w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                    <img src="/images/3/first_design_v4_for_tg.jpg" alt="Presentation Slide 6" class="gallery-item2 w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                    <img src="/images/3/med__telegram.jpg" alt="Presentation Slide 7" class="gallery-item2 w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                    <img src="/images/3/neobank_telegram.jpg" alt="Presentation Slide 8" class="gallery-item2 w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                    <img src="/images/3/poster_tg.jpg" alt="Presentation Slide 9" class="gallery-item2 w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                    <img src="/images/3/second_design-04.jpg" alt="Presentation Slide 9" class="gallery-item2 w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                    <img src="/images/3/telegram_new_telegram.jpg" alt="Presentation Slide 9" class="gallery-item2 w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                    <img src="/images/3/tg-apk_telegram.jpg" alt="Presentation Slide 9" class="gallery-item2 w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                    <img src="/images/3/zulfiya_telegram.jpg" alt="Presentation Slide 9" class="gallery-item2 w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                </div>
+                            </div>
+
+
+                        <!-- Project Card 1 -->
+                        <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
+                            <div class="flex flex-col md:flex-row justify-between md:items-start gap-6">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Logo and Branding for Impuls Medical Institute</h3>
+                                    <p class="mt-2 text-slate-300 max-w-2xl">In this project I designed a Logo and then a whole Branding for new private Medical Institute situated in Namangan, Uzbekistan.</p>
+                                </div>
+                                <a href="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/files/Impuls_brandbook_2022.pdf" download class="glow-on-hover whitespace-nowrap font-semibold bg-amber-500/80 text-white rounded-lg px-5 py-2.5 flex-shrink-0">Download Brandbook</a>
+                            </div>
+                            <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/impuls-logo-1.svg" alt="Impuls Medical Logo 1" class="rounded-lg shadow-lg">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/impuls-logo-2.svg" alt="Impuls Medical Logo 2" class="rounded-lg shadow-lg">
+                            </div>
+                        </div>
+                        
+                        <!-- Project Card 2 -->
+                        <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
+                            <div class="flex flex-col md:flex-row justify-between md:items-start gap-6">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">BitBrains - Website</h3>
+                                    <p class="mt-2 text-slate-300 max-w-2xl">This project was done during the study course of Front End Development at UA92. All the designing and building process was done by myself. Used HTML, CSS and JavaScript.</p>
+                                </div>
+                                <a href="https://bitbrains.netlify.app/home" target="_blank" class="glow-on-hover whitespace-nowrap font-semibold bg-amber-500/80 text-white rounded-lg px-5 py-2.5 flex-shrink-0">Visit Website</a>
+                            </div>
+                            <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/bitb-1.png" alt="BitBrains Website Home Page" class="rounded-lg shadow-lg">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/bitb-2.png" alt="BitBrains Website Store Page" class="rounded-lg shadow-lg">
+                            </div>
+                        </div>
+
+                        <!-- Project Card 3 -->
+                        <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
+                            <div class="flex flex-col md:flex-row justify-between md:items-start gap-6">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Database Website for Primary School</h3>
+                                    <p class="mt-2 text-slate-300 max-w-2xl">This project was done during the study course of Back End Development at UA92. Built using HTML, CSS, and PHP, including design work in Adobe Illustrator and After Effects.</p>
+                                </div>
+                                <a href="https://st-alphonsus-primary-school.netlify.app/" target="_blank" class="glow-on-hover whitespace-nowrap font-semibold bg-amber-500/80 text-white rounded-lg px-5 py-2.5 flex-shrink-0">Visit Website</a>
+                            </div>
+                            <div class="mt-6">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/alphons-sch.png" alt="St. Alphonsus' Home Page" class="rounded-lg shadow-lg w-full">
+                            </div>
+                        </div>
+
+                     </div>
+                </section>
+                
             </div>
+        </main>
 
-            <nav class="parallax-layer-base">
-                <img src="images/logo.svg" alt="Shokarimov Odilbek Main Logo" id="main-logo">
-
-                <div class="top-nav-links">
-                    <a class="navlink" href="home.html">HOME</a>
-                    <a class="navlink" href="contact.html">CONTACT</a>
-
-                    <div class="dropdown">
-                        <a style="border: 3.5px solid #F6EEE1; border-radius: 20px; background-color: transparent; font-family: teko-light; font-size: 42px; padding: 0px 13px 0px 14px; height: 62px;" class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        ENG
-                        </a>
-                        <ul style="min-width: 120px;" class="dropdown-menu dropdown-menu-dark">
-                            <li><a style="font-family: teko-light; font-size: 32px; text-align: center;" class="dropdown-item active" href="#">ENG</a></li>
-                            <li><a style="font-family: teko-light; font-size: 32px; text-align: center;" class="dropdown-item" href="/ru/portfolio.html">RUS</a></li>
-                        </ul>
-                    </div>
+        <!-- Footer -->
+        <footer class="text-center py-12 border-t border-slate-800/50 bg-slate-900/50 mt-16">
+             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-center space-x-6 mb-6">
+                    <a href="https://www.linkedin.com/in/odilbek-shokarimov-9860941b2/" target="_blank" class="text-slate-400 hover:text-amber-400 transition-transform hover:scale-110">
+                        <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/lin-logo.svg" alt="LinkedIn" class="h-8 w-8 filter invert hover:invert-0">
+                    </a>
+                     <a href="https://www.instagram.com/gd_odilbek/" target="_blank" class="text-slate-400 hover:text-amber-400 transition-transform hover:scale-110">
+                        <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/inst-logo.svg" alt="Instagram" class="h-8 w-8 filter invert hover:invert-0">
+                    </a>
+                    <a href="https://twitter.com/Odilbek8010" target="_blank" class="text-slate-400 hover:text-amber-400 transition-transform hover:scale-110">
+                        <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/twitter-logo.svg" alt="Twitter" class="h-8 w-8 filter invert hover:invert-0">
+                    </a>
                 </div>
-            </nav>
-
-            <div class="s-hero parallax-layer-base">
-                <img src="images/skills-heading.svg" class="s-headings" alt="My skills">
-                <div class="skills">
-                    <figure class="skill-logo"><img src="images/html-logo.svg" class="logo-mini"><figcaption>HTML</figcaption></figure>
-                    <figure class="skill-logo"><img src="images/css-logo.svg" class="logo-mini"><figcaption>CSS</figcaption></figure>
-                    <figure class="skill-logo"><img src="images/php-logo.svg" class="logo-big"><figcaption>PHP</figcaption></figure>
-                    <figure class="skill-logo"><img src="images/mysql-logo.svg" class="logo-big"><figcaption>MySQL</figcaption></figure>
-                    <figure class="skill-logo"><img src="images/ps-logo.svg" class="logo-mini"><figcaption>Adobe Photoshop</figcaption></figure>
-                    <figure class="skill-logo"><img src="images/ai-logo.svg" class="logo-mini"><figcaption>Adobe Illustrator</figcaption></figure>
-                    <figure class="skill-logo"><img src="images/ae-logo.svg" class="logo-mini"><figcaption>Adobe After Effects</figcaption></figure>
-                </div>
+                <p class="text-slate-500 text-sm">
+                    Designed & Built by Odilbek Shokarimov <br>
+                    © 2024 All rights reserved.
+                </p>
             </div>
+        </footer>
 
-            <div class="s-hero parallax-layer-base">
-                <img src="images/projects-heading.svg" class="s-headings" alt="My Projects">
+    </div>
 
-                <div class="project">
-                    <div>
-                        <h2 class="project-name">Logo and Branding for Impuls Medical Institute</h2>
-                        <p class="project-description">In this project I designed a Logo and then a whole Branding for new private Medical Institute situated in Namangan, Uzbekistan. Institute's website: <span><a href="https://www.impulsmi.uz/" target="_blank">impulsmi.uz</a></span></p>
-                    </div>
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span id="lightbox-close" class="lightbox-close">&times;</span>
+        <img id="lightbox-img" class="lightbox-content">
+        <a id="lightbox-prev" class="lightbox-nav lightbox-prev">&#10094;</a>
+        <a id="lightbox-next" class="lightbox-nav lightbox-next">&#10095;</a>
+    </div>
 
-                    <a href="files/Impuls_brandbook_2022.pdf" download><img src="images/bgpdf-download-btn.svg" 
-                        alt="Download Impuls Medical Brand Guide PDF" class="brandbook-download"></a>
-                </div>
+    
+    <!-- Three.js Script -->
+    <script type="importmap">
+        { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js" } }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
 
-                <div class="pr-images">
-                    <img src="images/impuls-logo-1.svg" alt="Impuls Medical Logo" class="pr-images-1">
-                    <img src="images/impuls-logo-2.svg" alt="Impuls Medical Logo" class="pr-images-1">
-                </div>
-            </div>
+        // --- Custom Cursor Logic ---
+        const cursorFollower = document.getElementById('cursor-follower');
+        if (window.matchMedia('(hover: hover)').matches) {
+            window.addEventListener('mousemove', e => {
+                cursorFollower.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+            });
+        }
 
-            <div class="s-hero parallax-layer-base">
-                <div class="project">
-                    <div>
-                        <h2 class="project-name">BitBrains - Website</h2>
-                        <p class="project-description">This project was done during the study course of Front End Development at UA92. All the designing and building process was done by myself. Softwares such as Adobe Illustrator and Photoshop were used in Designing process of the website. And in the process of building a website HTML, CSS and JavaScript Technologies were used.</p>
-                    </div>
+        // --- Hamkorbank Gallery & Lightbox Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const gallery = document.getElementById('hamkorbank-gallery');
+            const prevBtn = document.getElementById('hamkorbank-prev');
+            const nextBtn = document.getElementById('hamkorbank-next');
+            
+            // Gallery scroll buttons
+            if (gallery && prevBtn && nextBtn) {
+                const scrollAmount = () => gallery.clientWidth * 0.8; // scroll 80% of the container width
 
-                    <a href="https://bitbrains.netlify.app/home" target="_blank"><img src="images/visit-btn.svg" 
-                        alt="Go to the Website of BitBrains" class="brandbook-download"></a>
-                </div>
+                prevBtn.addEventListener('click', () => {
+                    gallery.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+                });
 
-                <div class="pr-images">
-                    <img src="images/bitb-1.png" alt="BitBrains WebSite's Home Page" class="pr-images-1">
-                    <img src="images/bitb-2.png" alt="BitBrains WebSite's Store Page" class="pr-images-1">
-                </div>
-            </div>
+                nextBtn.addEventListener('click', () => {
+                    gallery.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+                });
+            }
 
-            <div class="s-hero parallax-layer-base">
-                <div class="project">
-                    <div>
-                        <h2 class="project-name">Database Website for Primary School</h2>
-                        <p class="project-description">This project was done during the study course of Back End Development at UA92. All the designing and building process was done by myself. Softwares such as Adobe Illustrator and After Effects were used in Designing process of the website. And in the process of building a website HTML, CSS and PHP Technologies were used.</p>
-                    </div>
+            // Lightbox functionality
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const previewBtn = document.getElementById('hamkorbank-preview-btn');
+            const closeBtn = document.getElementById('lightbox-close');
+            const lightboxPrevBtn = document.getElementById('lightbox-prev');
+            const lightboxNextBtn = document.getElementById('lightbox-next');
+            const galleryItems = document.querySelectorAll('.hamkorbank-gallery-item');
+            
+            let currentIndex = 0;
 
-                    <a href="https://st-alphonsus-primary-school.netlify.app/" target="_blank"><img src="images/visit-btn.svg" 
-                        alt="Go to the Website of St. Alphonsus Primary School" class="brandbook-download"></a>
-                </div>
+            const showImage = (index) => {
+                lightboxImg.src = galleryItems[index].src;
+                currentIndex = index;
+            };
+            
+            if (previewBtn && lightbox) {
+                 previewBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // Find the most visible image in the scroll container
+                    let mostVisibleIndex = 0;
+                    let maxVisibility = 0;
+                    galleryItems.forEach((item, index) => {
+                        const rect = item.getBoundingClientRect();
+                        const galleryRect = gallery.getBoundingClientRect();
+                        const visibleWidth = Math.max(0, Math.min(rect.right, galleryRect.right) - Math.max(rect.left, galleryRect.left));
+                        if(visibleWidth > maxVisibility){
+                            maxVisibility = visibleWidth;
+                            mostVisibleIndex = index;
+                        }
+                    });
+                    
+                    lightbox.style.display = 'flex';
+                    showImage(mostVisibleIndex);
+                });
+            }
 
-                <div class="pr-images">
-                    <img src="images/alphons-sch.png" alt="St. Alphonsus' Home Page" style="width: 100%;">
-                </div>
-            </div>
+            if(closeBtn) closeBtn.addEventListener('click', () => lightbox.style.display = 'none');
+            if(lightboxPrevBtn) lightboxPrevBtn.addEventListener('click', () => showImage((currentIndex - 1 + galleryItems.length) % galleryItems.length));
+            if(lightboxNextBtn) lightboxNextBtn.addEventListener('click', () => showImage((currentIndex + 1) % galleryItems.length));
+            if(lightbox) lightbox.addEventListener('click', (e) => {
+                if(e.target === lightbox) { // Close if clicked on the background
+                    lightbox.style.display = 'none';
+                }
+            });
+        });
 
-            <div class="footer parallax-layer-base">
-                <div class="foot-one">
-                    <img src="images/logo.svg" alt="Shokarimov Odilbek Main Logo" id="main-logo">
-                    <p id="foot-text1">Designed and built by</p>
-                    <p class="foot-text">Odilbek Shokarimov.</p>
-                    <p class="foot-text">© 2024 All rights reserved.</p> 
-                </div>
+        // --- Three.js Background Logic ---
+        let scene, camera, renderer;
+        const objects = [];
 
-                <!-- <div class="foot-two">
-                    <ul id="foot-ul" role="list">
-                        <li role="listitem"><a class="foot-link" href="portfolio.html">Portfolio</a></li>
-                        <li role="listitem"><a class="foot-link" href="contact.html">Contact</a></li>
-                    </ul>
-                </div> -->
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
 
-                <div class="foot-three">
-                    <a href="https://www.linkedin.com/in/odilbek-shokarimov-9860941b2/" target="_blank"><img src="images/lin-logo.svg" alt="View LinkedIn profile" class="sm-link"></a>
-                    <a href="https://www.instagram.com/gd_odilbek/" target="_blank"><img src="images/inst-logo.svg" alt="View Instagram profile" class="sm-link"></a>
-                    <a href="https://twitter.com/Odilbek8010" target="_blank"><img src="images/twitter-logo.svg" alt="View Twitter profile" class="sm-link"></a>
-                </div>
-            </div>
-        </div>
-    </body>
+            const canvas = document.getElementById('bg-canvas');
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+            scene.add(ambientLight);
+            const pointLight = new THREE.PointLight(0xffffff, 0.8);
+            pointLight.position.set(5, 5, 5);
+            scene.add(pointLight);
+
+            const geometry = new THREE.IcosahedronGeometry(1, 1);
+            const material = new THREE.MeshStandardMaterial({
+                color: 0x334155, // Slate 700
+                roughness: 0.5,
+                metalness: 0.8,
+                transparent: true,
+                opacity: 0.2
+            });
+
+            for (let i = 0; i < 15; i++) {
+                const mesh = new THREE.Mesh(geometry, material);
+                mesh.position.set((Math.random() - 0.5) * 25, (Math.random() - 0.5) * 25, (Math.random() - 0.5) * 25);
+                mesh.scale.setScalar(Math.random() * 0.5 + 0.2);
+                mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+                scene.add(mesh);
+                objects.push(mesh);
+            }
+            
+            const dotCount = 10000;
+            const positions = new Float32Array(dotCount * 3);
+            const dotGeometry = new THREE.BufferGeometry();
+
+            for(let i = 0; i < dotCount * 3; i++) {
+                positions[i] = (Math.random() - 0.5) * 50;
+            }
+            dotGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+            const dotMaterial = new THREE.PointsMaterial({ size: 0.025, color: 0x475569 }); // Slate-600
+            const dots = new THREE.Points(dotGeometry, dotMaterial);
+            scene.add(dots);
+
+            window.addEventListener('resize', onWindowResize);
+            window.addEventListener('scroll', onScroll);
+
+            animate();
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function onScroll() {
+            const scrollY = window.scrollY;
+            camera.position.y = -scrollY * 0.003; 
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            objects.forEach(obj => {
+                obj.rotation.x += 0.001;
+                obj.rotation.y += 0.001;
+            });
+            renderer.render(scene, camera);
+        }
+
+        init();
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+    const images = [
+        { src: "/images/2/inkandpixel_1.png", alt: "Geometric H and B Monogram for Hamkorbank" },
+        { src: "/images/2/inkandpixel_2.png", alt: "Modernist Abstract Logo Concept" },
+        { src: "/images/2/inkandpixel_3.png", alt: "Dynamic 'H' Lettermark" },
+        { src: "/images/2/inkandpixel_4.jpg", alt: "Circular Badge Logo with Abstract Symbol" },
+        { src: "/images/2/growup_logo-05.jpg", alt: "GrowUp Finance Logo with Arrow Symbol" },
+        { src: "/images/2/grow-up-logo-03.jpg", alt: "GrowUp Abstract Mark Presentation" },
+        { src: "/images/2/star_logo_design.jpg", alt: "Star Shield Security Logo" },
+        { src: "/images/2/m_v7_final.jpg", alt: "V7 Ventures Geometric Logo" }
+    ];
+
+    const galleryTrack = document.getElementById('logo-gallery-track');
+    const galleryWrapper = document.getElementById('logo-gallery-wrapper');
+    const trackContainer = document.getElementById('logo-gallery-track-container');
+
+    // --- 1. POPULATE AND DUPLICATE GALLERY FOR SEAMLESS SCROLL ---
+    function setupGallery() {
+        const allImages = [...images, ...images]; // Duplicate for seamless loop
+
+        allImages.forEach((imgData, index) => {
+            const img = document.createElement('img');
+            img.src = imgData.src;
+            img.alt = imgData.alt;
+            img.className = "h-48 sm:h-64 object-contain rounded-lg shadow-lg flex-shrink-0 gallery-item cursor-pointer";
+            img.dataset.index = index % images.length; // Original index
+            galleryTrack.appendChild(img);
+        });
+    }
+
+
+    // --- 2. MODAL (LIGHTBOX) LOGIC ---
+    const modal = document.getElementById('image-modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalCaption = document.getElementById('modal-caption');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const modalPrevBtn = document.getElementById('modal-prev');
+    const modalNextBtn = document.getElementById('modal-next');
+    let currentIndex = 0;
+    
+    function updateModalContent(index) {
+        const image = images[index];
+        modalImage.src = image.src;
+        modalCaption.textContent = image.alt;
+        currentIndex = index;
+    }
+
+    function showModal(index) {
+        updateModalContent(index);
+        modal.classList.add('show');
+    }
+
+    function closeModal() {
+        modal.classList.remove('show');
+    }
+
+    modalPrevBtn.addEventListener('click', () => {
+        const newIndex = (currentIndex - 1 + images.length) % images.length;
+        updateModalContent(newIndex);
+    });
+
+    modalNextBtn.addEventListener('click', () => {
+        const newIndex = (currentIndex + 1) % images.length;
+        updateModalContent(newIndex);
+    });
+    
+    closeModalBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.classList.contains('show')) closeModal();
+    });
+
+    // --- 3. CAROUSEL NAVIGATION & AUTOSCROLL ---
+    const prevBtn = document.getElementById('logo-prev');
+    const nextBtn = document.getElementById('logo-next');
+    let autoScrollInterval;
+
+    // We use the container for scrolling, not the track itself
+    function scrollManually(distance) {
+        trackContainer.scrollBy({
+            left: distance,
+            behavior: 'smooth'
+        });
+    }
+    
+    function handleAutoScroll() {
+        // If scroll position is near the end of the first set, reset to the beginning
+        if (trackContainer.scrollLeft >= galleryTrack.scrollWidth / 2) {
+             trackContainer.scrollLeft = 0;
+        } else {
+            trackContainer.scrollLeft += 1; // scroll by 1px
+        }
+    }
+
+    function startAutoScroll() {
+        stopAutoScroll(); // Prevent multiple intervals
+        autoScrollInterval = setInterval(handleAutoScroll, 30); // Adjust speed here (lower is faster)
+    }
+
+    function stopAutoScroll() {
+        clearInterval(autoScrollInterval);
+    }
+    
+    nextBtn.addEventListener('click', () => {
+        const firstImage = galleryTrack.children[0];
+        // Calculate scroll amount: image width + margin (space-x-6 -> 1.5rem -> 24px)
+        const scrollAmount = firstImage.offsetWidth + 24;
+        scrollManually(scrollAmount);
+    });
+
+    prevBtn.addEventListener('click', () => {
+        const firstImage = galleryTrack.children[0];
+        const scrollAmount = firstImage.offsetWidth + 24;
+        scrollManually(-scrollAmount);
+    });
+
+    galleryWrapper.addEventListener('mouseenter', stopAutoScroll);
+    galleryWrapper.addEventListener('mouseleave', startAutoScroll);
+
+
+    // --- 4. CLICK HANDLER (OPEN MODAL) ---
+    galleryTrack.addEventListener('click', (e) => {
+        const clickedItem = e.target.closest('.gallery-item');
+        if (clickedItem) {
+            const index = parseInt(clickedItem.dataset.index, 10);
+            showModal(index);
+        }
+    });
+
+    // --- INITIALIZE ---
+    setupGallery();
+    startAutoScroll();
+});
+</script>
+
+    
+</body>
 </html>
