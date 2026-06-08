@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>o. shokarimov - portfolio</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/icons/favicon-32x32.png" type="image/png">
+    
+    <meta name="description" content="A portfolio website for Odilbek Shokarimov, showcasing skills in graphic design, web design, and development.">
+    <meta name="author" content="Shokarimov Odilbek"/>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F172A; /* Slate 900 */
+            color: #E2E8F0; /* Slate 200 */
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Canvas for 3D background */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        /* Glassmorphism effect for cards */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+        }
+        /* Navigation link hover effect */
+        .nav-link {
+            position: relative;
+            padding-bottom: 8px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #FBBF24;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        /* Futuristic glow effect for buttons */
+        .glow-on-hover {
+            transition: all 0.3s ease-in-out;
+            border: 2px solid transparent;
+        }
+        .glow-on-hover:hover {
+            color: #ffffff;
+            box-shadow: 0 0 15px #FBBF24, 0 0 25px #F59E0B;
+            border-color: #FBBF24;
+            background-color: #F59E0B;
+        }
+        /* Hide scrollbar for gallery */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Lightbox styles */
+        .lightbox {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 85vh;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2.5rem;
+            color: #fff;
+            font-size: 3rem;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .lightbox-close:hover, .lightbox-close:focus {
+            color: #bbb;
+        }
+        .lightbox-nav {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 2.5rem;
+            transition: 0.6s ease;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .lightbox-prev { left: 1rem; }
+        .lightbox-next { right: 1rem; }
+        .lightbox-prev:hover, .lightbox-next:hover {
+            background-color: rgba(251, 191, 36, 0.3);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="relative z-10">
+
+        <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/50 backdrop-blur-sm">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <nav class="flex justify-between items-center h-20">
+                    <a href="index.html">
+                        <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/logo.svg" alt="Shokarimov Odilbek Main Logo" class="h-8 w-auto transition-transform hover:scale-105">
+                    </a>
+                    
+                    <div class="hidden md:flex items-center space-x-8">
+                        <div class="hidden md:flex items-center space-x-8" style="margin-bottom: -10px;">
+                            <a href="index.html" class="nav-link font-medium text-slate-300 hover:text-amber-400 transition-colors">HOME</a>
+                            <a href="#" class="nav-link font-medium text-amber-400">PORTFOLIO</a>
+                        </div>
+                        <a href="contact.html" class="glow-on-hover font-semibold bg-amber-500 text-slate-900 rounded-lg px-5 py-2.5">
+                            CONTACT
+                        </a>
+                    </div>
+
+                    <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-amber-400">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-slate-900/95 backdrop-blur-sm z-40">
+            <div class="flex flex-col items-center justify-center h-full space-y-10">
+                <a href="index.html" class="text-3xl font-medium text-slate-300 hover:text-amber-400 transition-colors">HOME</a>
+                <a href="#" class="text-3xl font-medium text-amber-400">PORTFOLIO</a>
+                <a href="contact.html" class="text-3xl font-medium text-slate-300 hover:text-amber-400 transition-colors">CONTACT</a>
+            </div>
+        </div>
+
+        <main class="pt-24">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <section id="skills" class="my-16">
+                    <h2 class="text-3xl font-bold text-center text-white mb-12">My Skills</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-1">
+                            <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/html-logo.svg" alt="HTML Logo" class="h-16 mb-4">
+                            <h3 class="font-semibold text-white">HTML</h3>
+                        </div>
+                        <div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-1">
+                            <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/css-logo.svg" alt="CSS Logo" class="h-16 mb-4">
+                            <h3 class="font-semibold text-white">CSS</h3>
+                        </div>
+                        <div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-1">
+                            <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/php-logo.svg" alt="PHP Logo" class="h-16 mb-4">
+                            <h3 class="font-semibold text-white">PHP</h3>
+                        </div>
+                        <div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-1">
+                            <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/mysql-logo.svg" alt="MySQL Logo" class="h-16 mb-4">
+                            <h3 class="font-semibold text-white">MySQL</h3>
+                        </div>
+                        <div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-1">
+                            <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/ps-logo.svg" alt="Photoshop Logo" class="h-16 mb-4">
+                            <h3 class="font-semibold text-white">Adobe Photoshop</h3>
+                        </div>
+                        <div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-1">
+                            <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/ai-logo.svg" alt="Illustrator Logo" class="h-16 mb-4">
+                            <h3 class="font-semibold text-white">Adobe Illustrator</h3>
+                        </div>
+                        <div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-1">
+                            <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/ae-logo.svg" alt="After Effects Logo" class="h-16 mb-4">
+                            <h3 class="font-semibold text-white">Adobe After Effects</h3>
+                        </div>
+                        <div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-amber-400/50 hover:-translate-y-1">
+                            <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/Adobe_Premiere_Pro_CC_icon.svg" alt="Premiere Pro Logo" class="h-16 mb-4">
+                            <h3 class="font-semibold text-white">Adobe Premiere Pro</h3>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="projects" class="my-24">
+                    <h2 class="text-3xl font-bold text-center text-white mb-12">My Projects</h2>
+                    <div class="space-y-16">
+
+                        <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
+                            <div class="flex flex-col md:flex-row justify-between md:items-start gap-6">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Logo and Branding for Impuls Medical Institute</h3>
+                                    <p class="mt-2 text-slate-300 max-w-2xl">In this project I designed a Logo and then a whole Branding for new private Medical Institute situated in Namangan, Uzbekistan.</p>
+                                </div>
+                                <a href="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/files/Impuls_brandbook_2022.pdf" download class="glow-on-hover whitespace-nowrap font-semibold bg-amber-500/80 text-white rounded-lg px-5 py-2.5 flex-shrink-0">Download Brandbook</a>
+                            </div>
+                            <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/impuls-logo-1.svg" alt="Impuls Medical Logo 1" class="rounded-lg shadow-lg">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/impuls-logo-2.svg" alt="Impuls Medical Logo 2" class="rounded-lg shadow-lg">
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
+                            <div class="flex flex-col md:flex-row justify-between md:items-start gap-6">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">BitBrains - Website</h3>
+                                    <p class="mt-2 text-slate-300 max-w-2xl">This project was done during the study course of Front End Development at UA92. All the designing and building process was done by myself. Used HTML, CSS and JavaScript.</p>
+                                </div>
+                                <a href="https://bitbrains.netlify.app/home" target="_blank" class="glow-on-hover whitespace-nowrap font-semibold bg-amber-500/80 text-white rounded-lg px-5 py-2.5 flex-shrink-0">Visit Website</a>
+                            </div>
+                            <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/bitb-1.png" alt="BitBrains Website Home Page" class="rounded-lg shadow-lg">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/bitb-2.png" alt="BitBrains Website Store Page" class="rounded-lg shadow-lg">
+                            </div>
+                        </div>
+
+                        <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
+                            <div class="flex flex-col md:flex-row justify-between md:items-start gap-6">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Database Website for Primary School</h3>
+                                    <p class="mt-2 text-slate-300 max-w-2xl">This project was done during the study course of Back End Development at UA92. Built using HTML, CSS, and PHP, including design work in Adobe Illustrator and After Effects.</p>
+                                </div>
+                                <a href="https://st-alphonsus-primary-school.netlify.app/" target="_blank" class="glow-on-hover whitespace-nowrap font-semibold bg-amber-500/80 text-white rounded-lg px-5 py-2.5 flex-shrink-0">Visit Website</a>
+                            </div>
+                            <div class="mt-6">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/alphons-sch.png" alt="St. Alphonsus' Home Page" class="rounded-lg shadow-lg w-full">
+                            </div>
+                        </div>
+
+                        <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
+                            <div class="flex flex-col md:flex-row justify-between md:items-start gap-6">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">HR Presentation for Hamkorbank</h3>
+                                    <p class="mt-2 text-slate-300 max-w-2xl">A corporate presentation designed for the HR department of Hamkorbank. Click an image to preview.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="relative mt-6">
+                                <div id="hamkorbank-gallery" class="flex overflow-x-auto snap-x snap-mandatory space-x-6 pb-4 no-scrollbar">
+                                    <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/1/design_second_translate-01.png" alt="Hamkorbank Presentation Slide 1" class="gallery-item h-80 object-contain rounded-lg shadow-lg snap-center flex-shrink-0 cursor-pointer">
+                                    <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/1/design_second_translate-02.png" alt="Hamkorbank Presentation Slide 2" class="gallery-item h-80 object-contain rounded-lg shadow-lg snap-center flex-shrink-0 cursor-pointer">
+                                    <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/1/design_second_translate-03.png" alt="Hamkorbank Presentation Slide 3" class="gallery-item h-80 object-contain rounded-lg shadow-lg snap-center flex-shrink-0 cursor-pointer">
+                                    <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/1/design_second_translate-04.png" alt="Hamkorbank Presentation Slide 4" class="gallery-item h-80 object-contain rounded-lg shadow-lg snap-center flex-shrink-0 cursor-pointer">
+                                    <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/1/design_second_translate-05.png" alt="Hamkorbank Presentation Slide 5" class="gallery-item h-80 object-contain rounded-lg shadow-lg snap-center flex-shrink-0 cursor-pointer">
+                                    <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/1/design_second_translate-06.png" alt="Hamkorbank Presentation Slide 6" class="gallery-item h-80 object-contain rounded-lg shadow-lg snap-center flex-shrink-0 cursor-pointer">
+                                    <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/1/design_second_translate-07.png" alt="Hamkorbank Presentation Slide 7" class="gallery-item h-80 object-contain rounded-lg shadow-lg snap-center flex-shrink-0 cursor-pointer">
+                                </div>
+                                <button id="hamkorbank-prev" class="absolute top-1/2 left-0 -translate-y-1/2 bg-slate-800/50 p-2 rounded-full text-white hover:bg-amber-500/80 transition-colors hidden sm:block">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                </button>
+                                <button id="hamkorbank-next" class="absolute top-1/2 right-0 -translate-y-1/2 bg-slate-800/50 p-2 rounded-full text-white hover:bg-amber-500/80 transition-colors hidden sm:block">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Logo Design</h3>
+                                <p class="mt-2 text-slate-300 max-w-2xl">A selection of original logos. This gallery auto-scrolls and can be controlled on hover. Click any logo to see it larger.</p>
+                            </div>
+                            
+                            <div id="logo-gallery-wrapper" class="relative mt-6 group">
+                                <button id="logo-prev" class="absolute top-1/2 left-2 -translate-y-1/2 bg-slate-800/50 p-2 rounded-full text-white hover:bg-amber-500/80 transition-all z-10 opacity-0 group-hover:opacity-100 duration-300">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                </button>
+                                <button id="logo-next" class="absolute top-1/2 right-2 -translate-y-1/2 bg-slate-800/50 p-2 rounded-full text-white hover:bg-amber-500/80 transition-all z-10 opacity-0 group-hover:opacity-100 duration-300">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                </button>
+                                <div id="logo-gallery-container" class="overflow-hidden">
+                                    <div id="logo-gallery-track" class="flex space-x-6">
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card rounded-xl p-8">
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Social Media Posts</h3>
+                                <p class="mt-2 text-slate-300 max-w-2xl">A curated set of visuals designed to engage, inform, and reflect brand identity across digital platforms. Click any post to see it larger.</p>
+                            </div>
+                            
+                            <div class="mt-6 grid grid-cols-2 md:grid-cols-3 gap-4">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/3/9-december_post.jpg" alt="Post for December 9th" class="gallery-item w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/3/design_inv_2_RU.png" alt="Invitation design" class="gallery-item w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/3/design_invitation.png" alt="Invitation design" class="gallery-item w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/3/eid_congrats_telegram.jpg" alt="Eid congratulations post" class="gallery-item w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/3/eid_telegram.jpg" alt="Eid post" class="gallery-item w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/3/first_design_v4_for_tg.jpg" alt="Promotional design post" class="gallery-item w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/3/med__telegram.jpg" alt="Medical theme post" class="gallery-item w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/3/neobank_telegram.jpg" alt="Neobank post" class="gallery-item w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/3/poster_tg.jpg" alt="Event poster" class="gallery-item w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/3/second_design-04.jpg" alt="Design concept post" class="gallery-item w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/3/telegram_new_telegram.jpg" alt="Telegram update post" class="gallery-item w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/3/zulfiya_telegram.jpg" alt="Zulfiya award post" class="gallery-item w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                            </div>
+                        </div>
+                   </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="text-center py-12 border-t border-slate-800/50 bg-slate-900/50 mt-16">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-center space-x-6 mb-6">
+                    <a href="https://www.linkedin.com/in/odilbek-shokarimov-9860941b2/" target="_blank" class="text-slate-400 hover:text-amber-400 transition-transform hover:scale-110">
+                        <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/lin-logo.svg" alt="LinkedIn" class="h-8 w-8">
+                    </a>
+                     <a href="https://www.instagram.com/gd_odilbek/" target="_blank" class="text-slate-400 hover:text-amber-400 transition-transform hover:scale-110">
+                        <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/inst-logo.svg" alt="Instagram" class="h-8 w-8">
+                    </a>
+                    <a href="https://twitter.com/Odilbek8010" target="_blank" class="text-slate-400 hover:text-amber-400 transition-transform hover:scale-110">
+                        <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/twitter-logo.svg" alt="Twitter" class="h-8 w-8">
+                    </a>
+                </div>
+                <p class="text-slate-500 text-sm">
+                    Designed & Built by Odilbek Shokarimov <br>
+                    © 2024 All rights reserved.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <div id="lightbox" class="lightbox">
+        <span id="lightbox-close" class="lightbox-close">&times;</span>
+        <img id="lightbox-img" class="lightbox-content">
+        <a id="lightbox-prev" class="lightbox-nav lightbox-prev">&#10094;</a>
+        <a id="lightbox-next" class="lightbox-nav lightbox-next">&#10095;</a>
+    </div>
+    
+    <script type="importmap">
+        { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js" } }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+
+        // --- UNIFIED SCRIPT INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 1. INITIALIZE ALL COMPONENTS ---
+            initMobileMenu();
+            initThreeJSBackground();
+            initHamkorbankGallery();
+            initLogoCarousel();
+            initLightbox();
+
+            // --- 2. MOBILE MENU ---
+            function initMobileMenu() {
+                const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenuBtn && mobileMenu) {
+                    mobileMenuBtn.addEventListener('click', () => {
+                        mobileMenu.classList.toggle('hidden');
+                    });
+                }
+            }
+
+            // --- 3. HAMKORBANK SCROLLING GALLERY ---
+            function initHamkorbankGallery() {
+                const gallery = document.getElementById('hamkorbank-gallery');
+                const prevBtn = document.getElementById('hamkorbank-prev');
+                const nextBtn = document.getElementById('hamkorbank-next');
+                
+                if (gallery && prevBtn && nextBtn) {
+                    const scrollAmount = () => gallery.clientWidth * 0.8;
+                    prevBtn.addEventListener('click', () => gallery.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
+                    nextBtn.addEventListener('click', () => gallery.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+                }
+            }
+
+            // --- 4. LOGO CAROUSEL (AUTO-SCROLL) ---
+            function initLogoCarousel() {
+                const images = [
+                    { src: "https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/2/inkandpixel_1.png", alt: "Logo Design for Ink&Pixel Co. Design Studio" },
+                    { src: "https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/2/inkandpixel_2.png", alt: "Logo Design for Ink&Pixel Co. Design Studio" },
+                    { src: "https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/2/inkandpixel_3.png", alt: "Logo Design for Ink&Pixel Co. Design Studio" },
+                    { src: "https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/2/inkandpixel_4.jpg", alt: "Logo Design for Ink&Pixel Co. Design Studio" },
+                    { src: "https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/2/growup_logo-05.jpg", alt: "GrowUp - Logo for one of the projects at Hamkorbank" },
+                    { src: "https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/2/grow-up-logo-03.jpg", alt: "Logo for one of the projects at Hamkorbank - Second version" },
+                    { src: "https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/2/star_logo_design.jpg", alt: "Hamkorbank JSCB Transformation Logo Design Concept" },
+                    { src: "https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/2/m_v7_final.jpg", alt: "Logo for Educational School Specialized in Chemistry" }
+                ];
+
+                const track = document.getElementById('logo-gallery-track');
+                const container = document.getElementById('logo-gallery-container');
+                const wrapper = document.getElementById('logo-gallery-wrapper');
+                const prevBtn = document.getElementById('logo-prev');
+                const nextBtn = document.getElementById('logo-next');
+
+                if (!track || !container) return;
+
+                // Populate gallery and duplicate for seamless loop
+                const allImages = [...images, ...images];
+                allImages.forEach((imgData, index) => {
+                    const img = document.createElement('img');
+                    img.src = imgData.src;
+                    img.alt = imgData.alt;
+                    img.className = "gallery-item h-48 sm:h-64 object-contain rounded-lg shadow-lg flex-shrink-0 cursor-pointer";
+                    track.appendChild(img);
+                });
+
+                let autoScrollInterval;
+                const startAutoScroll = () => {
+                    stopAutoScroll();
+                    autoScrollInterval = setInterval(() => {
+                        if (container.scrollLeft >= track.scrollWidth / 2) {
+                            container.scrollLeft = 0;
+                        } else {
+                            container.scrollLeft += 1;
+                        }
+                    }, 30);
+                };
+                const stopAutoScroll = () => clearInterval(autoScrollInterval);
+
+                wrapper.addEventListener('mouseenter', stopAutoScroll);
+                wrapper.addEventListener('mouseleave', startAutoScroll);
+                
+                const scrollManually = (direction) => {
+                    const firstImage = track.children[0];
+                    const scrollAmount = firstImage.offsetWidth + 24; // 24px is for space-x-6
+                    container.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+                };
+
+                nextBtn.addEventListener('click', () => scrollManually(1));
+                prevBtn.addEventListener('click', () => scrollManually(-1));
+
+                startAutoScroll();
+            }
+
+            // --- 5. UNIFIED LIGHTBOX ---
+            function initLightbox() {
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImg = document.getElementById('lightbox-img');
+                const closeBtn = document.getElementById('lightbox-close');
+                const prevBtn = document.getElementById('lightbox-prev');
+                const nextBtn = document.getElementById('lightbox-next');
+                
+                if (!lightbox) return;
+
+                let galleryItems = [];
+                let currentIndex = 0;
+
+                const showImage = (index) => {
+                    if (index < 0 || index >= galleryItems.length) return;
+                    lightboxImg.src = galleryItems[index].src;
+                    currentIndex = index;
+                };
+
+                document.body.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('gallery-item')) {
+                        const clickedGallery = e.target.closest('.grid, .flex');
+                        galleryItems = Array.from(clickedGallery.querySelectorAll('.gallery-item'));
+                        const clickedIndex = galleryItems.findIndex(item => item === e.target);
+                        
+                        showImage(clickedIndex);
+                        lightbox.style.display = 'flex';
+                    }
+                });
+                
+                closeBtn.addEventListener('click', () => lightbox.style.display = 'none');
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) lightbox.style.display = 'none';
+                });
+                prevBtn.addEventListener('click', () => showImage(currentIndex - 1));
+                nextBtn.addEventListener('click', () => showImage(currentIndex + 1));
+                document.addEventListener('keydown', (e) => {
+                    if (lightbox.style.display === 'flex') {
+                        if (e.key === 'Escape') lightbox.style.display = 'none';
+                        if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+                        if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+                    }
+                });
+            }
+
+            // --- 6. THREE.JS BACKGROUND ---
+            function initThreeJSBackground() {
+                let scene, camera, renderer;
+                const objects = [];
+                const canvas = document.getElementById('bg-canvas');
+                if (!canvas) return;
+                
+                scene = new THREE.Scene();
+                camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 5;
+
+                renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+                const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+                scene.add(ambientLight);
+                const pointLight = new THREE.PointLight(0xffffff, 0.8);
+                pointLight.position.set(5, 5, 5);
+                scene.add(pointLight);
+
+                const geometry = new THREE.IcosahedronGeometry(1, 1);
+                const material = new THREE.MeshStandardMaterial({
+                    color: 0x334155,
+                    roughness: 0.5,
+                    metalness: 0.8,
+                    transparent: true,
+                    opacity: 0.2
+                });
+
+                for (let i = 0; i < 15; i++) {
+                    const mesh = new THREE.Mesh(geometry, material);
+                    mesh.position.set((Math.random() - 0.5) * 25, (Math.random() - 0.5) * 25, (Math.random() - 0.5) * 25);
+                    mesh.scale.setScalar(Math.random() * 0.5 + 0.2);
+                    mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+                    scene.add(mesh);
+                    objects.push(mesh);
+                }
+                
+                const dotCount = 10000;
+                const positions = new Float32Array(dotCount * 3);
+                for(let i = 0; i < dotCount * 3; i++) {
+                    positions[i] = (Math.random() - 0.5) * 50;
+                }
+                const dotGeometry = new THREE.BufferGeometry();
+                dotGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                const dotMaterial = new THREE.PointsMaterial({ size: 0.025, color: 0x475569 });
+                const dots = new THREE.Points(dotGeometry, dotMaterial);
+                scene.add(dots);
+
+                const animate = () => {
+                    requestAnimationFrame(animate);
+                    objects.forEach(obj => {
+                        obj.rotation.x += 0.001;
+                        obj.rotation.y += 0.001;
+                    });
+                    renderer.render(scene, camera);
+                };
+
+                const onWindowResize = () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                };
+
+                const onScroll = () => {
+                    camera.position.y = -window.scrollY * 0.003; 
+                };
+
+                window.addEventListener('resize', onWindowResize);
+                window.addEventListener('scroll', onScroll);
+                animate();
+            }
+        });
+    </script>
+</body>
+</html>

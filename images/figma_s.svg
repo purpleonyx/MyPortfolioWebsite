@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+<style type="text/css">
+	
+		.st0{clip-path:url(#SVGID_00000118373299050252360350000004246313704947176349_);fill:url(#SVGID_00000103266502530536159410000011921898247056614291_);}
+	.st1{fill:#F24E1E;}
+	.st2{fill:#A259FF;}
+	.st3{fill:#FF7262;}
+	.st4{fill:#1ABCFE;}
+	.st5{fill:#0ACF83;}
+</style>
+<g>
+	<defs>
+		<path id="SVGID_1_" d="M795.4,1000H204.6C91.6,1000,0,908.4,0,795.4V204.6C0,91.6,91.6,0,204.6,0h590.8
+			c113,0,204.6,91.6,204.6,204.6v590.8C1000,908.4,908.4,1000,795.4,1000z"/>
+	</defs>
+	<clipPath id="SVGID_00000015341611485945115500000011536947757390965404_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+	
+		<linearGradient id="SVGID_00000114053778167731042930000002794356505387445904_" gradientUnits="userSpaceOnUse" x1="-532.8563" y1="87.3002" x2="723.4119" y2="544.5495" gradientTransform="matrix(1 0 0 1 404.7222 184.0751)">
+		<stop  offset="0" style="stop-color:#FFFFFF"/>
+		<stop  offset="0.51" style="stop-color:#E2E8F0"/>
+		<stop  offset="1" style="stop-color:#94A3B8"/>
+	</linearGradient>
+	
+		<rect x="-25" y="-12" style="clip-path:url(#SVGID_00000015341611485945115500000011536947757390965404_);fill:url(#SVGID_00000114053778167731042930000002794356505387445904_);" width="1050" height="1024"/>
+</g>
+<g>
+	<path class="st1" d="M397,397h103V190.9H397c-56.9,0-103,46.1-103,103v0C293.9,350.8,340.1,397,397,397z"/>
+	<path class="st2" d="M397,603h103V397H397c-56.9,0-103,46.1-103,103v0C293.9,556.9,340.1,603,397,603z"/>
+	<path class="st3" d="M603,397H500V190.9h103c56.9,0,103,46.1,103,103v0C706.1,350.8,659.9,397,603,397z"/>
+	<path class="st4" d="M603,603L603,603c-56.9,0-103-46.1-103-103v0c0-56.9,46.1-103,103-103h0c56.9,0,103,46.1,103,103v0
+		C706.1,556.9,659.9,603,603,603z"/>
+	<path class="st5" d="M397,809.1L397,809.1c56.9,0,103-46.1,103-103V603H397c-56.9,0-103,46.1-103,103v0
+		C293.9,763,340.1,809.1,397,809.1z"/>
+</g>
+</svg>

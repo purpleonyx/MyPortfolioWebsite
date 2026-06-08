@@ -1,370 +1,340 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>o. shokarimov</title>
     
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link href="glowing-btn.css" rel="stylesheet">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
     
     <link rel="icon" href="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/icons/favicon-32x32.png" type="image/png">
     
-    <meta name="description" content="A portfolio website for Odilbek Shokarimov, showcasing skills in graphic design, web design, and development.">
+    <meta name="description" content="Портфолио Одилбека Шокаримова, демонстрирующее навыки в графическом дизайне, веб-дизайне и многом другом.">
     <meta name="author" content="Shokarimov Odilbek"/>
 
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0F172A; /* Slate 900 */
-            color: #E2E8F0; /* Slate 200 */
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&family=Alex+Brush&family=Sacramento&family=Cinzel+Decorative&family=Inter:wght@400;600&display=swap');
 
-        /* Canvas for 3D background */
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Place it behind all content */
-        }
-
-        /* Glassmorphism effect for cards */
-        .glass-card {
-            background: rgba(30, 41, 59, 0.5); /* Slate 800 with 50% opacity */
-            backdrop-filter: blur(25px); /* Increased blur for a glassier effect */
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(51, 65, 85, 0.5); /* Slate 700 with 50% opacity */
-        }
-        
-        /* Custom gradient for text */
-        .text-gradient {
-            background: linear-gradient(to right, #FBBF24, #F59E0B); /* Amber 400 to Amber 500 */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        /* Smooth scroll behavior */
         html {
             scroll-behavior: smooth;
         }
-        
-        /* Navigation link hover effect */
-        .nav-link {
-            position: relative;
-            padding-bottom: 8px; /* space for the line */
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #FBBF24; /* Amber 400 */
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after {
-            width: 100%;
+
+        body {
+            background-image: url(/images/wallpaper-squares.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
         }
 
-        /* Futuristic glow effect for the contact button */
-        .glow-on-hover {
-            transition: all 0.3s ease-in-out;
-            border: 2px solid transparent;
+        nav {
+            margin: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-        .glow-on-hover:hover {
+
+        #logo-navbar {
+            height: 30px;
+            width: auto;
+        }
+
+        .navbar-buttons {
+            display: flex;
+            gap: 25px;
+        }
+
+        #main-hero-pic {
+            width: 70vw;
+            height: auto;
+            margin: 0px;
+            margin-bottom: -3px;
+        }
+
+        .custom-premium-btn {
+            font-family: 'Inter', sans-serif;
+            background-color: transparent;
             color: #ffffff;
-            box-shadow: 0 0 15px #FBBF24, 0 0 25px #F59E0B;
-            border-color: #FBBF24;
-            background-color: #F59E0B; /* Amber 500 on hover */
+            border: 1px solid #ffffff;
+            width: 140px;
+            height: 50px;
+            border-radius: 9999px;
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            outline: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hover micro-interaction */
+        .custom-premium-btn:hover {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: 'Great Vibes';
+            font-size: 22px;
+            box-shadow: 0 12px 28px rgba(255, 255, 255, 0.2);
+            /* transform: translateY(-2px); */
+        }
+
+        .main-hero-sec-with-pic {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0px;
         }
     </style>
 </head>
-<body class="antialiased">
 
-    <div id="cursor-follower"></div>
+<body>
+    <nav>
+        <a href="/index.html">
+          <img src="/images/logo_green.svg" alt="Shokarimov O Logo" id="logo-navbar"/>
+        </a>
 
-    <canvas id="bg-canvas"></canvas>
+      <div class="navbar-buttons">
+        <div class="bg-glow"></div>
+        <div class="button-container">
+            <a href="/portfolio.html"><button class="custom-premium-btn1">Портфолио</button></a>
+        </div>
+        <a href="/contact.html"><button class="custom-premium-btn">Контакт</button></a>
+      </div>
+    </nav>
 
-    <div class="relative z-10">
+    <div class="main-hero-sec-with-pic">
+        <img src="/images/Asset 1.svg" alt="My Main Hero Picture that says I'm a Digital Creator" id="main-hero-pic">
+        <div class="px-4 py-5 text-center bg-light" style="margin-top: 0px;">
+            <h1 class="display-5 fw-bold text-body-emphasis mb-3">Одилбек Шокаримов</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Я графический дизайнер с более чем 4-летним профессиональным опытом. 
+                    Мой интерес к искусству и визуальному творчеству появился ещё в детстве и со временем превратился в профессию.
 
-        <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/50 backdrop-blur-sm">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <nav class="flex justify-between items-center h-20">
-                    <a href="#">
-                        <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/logo.svg" alt="Shokarimov Odilbek Main Logo" class="h-8 w-auto transition-transform hover:scale-105">
-                    </a>
-                    
-                    <div class="hidden md:flex items-center space-x-8">
-                        <div class="hidden md:flex items-center space-x-8" style="margin-bottom: -10px;">
-                            <a href="#about" class="nav-link font-medium text-slate-300 hover:text-amber-400 transition-colors">ABOUT</a>
-                            <a href="#experience" class="nav-link font-medium text-slate-300 hover:text-amber-400 transition-colors">EXPERIENCE</a>
-                            <a href="#education" class="nav-link font-medium text-slate-300 hover:text-amber-400 transition-colors">EDUCATION</a>
-                            <a href="https://shokarimov.netlify.app/portfolio" class="nav-link font-medium text-slate-300 hover:text-amber-400 transition-colors">PORTFOLIO</a>
-                        </div>
-                        <a href="https://shokarimov.netlify.app/contact" class="glow-on-hover font-semibold bg-amber-500 text-slate-900 rounded-lg px-5 py-2.5">
-                            CONTACT
-                        </a>
-                    </div>
+                    <br>Основное направление моей работы — графический дизайн, где я создаю визуальные решения для брендов и цифровых 
+                    проектов. Также я изучаю моушен-дизайн и видеомонтаж, имея практический опыт в этих направлениях.
 
-                    <button id="menu-button" class="md:hidden text-slate-300 hover:text-amber-400">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                    </button>
-                </nav>
+                    <br>Помимо дизайна, я обучался по специальности Computer Science в UA92 в Манчестере. Благодаря этому я хорошо 
+                    разбираюсь в веб-дизайне, пользовательских интерфейсах и фронтенд-разработке, что помогает мне создавать 
+                    не только визуально привлекательные, но и функциональные решения.
+
+                    <br>Постоянное изучение новых инструментов, технологий и подходы к дизайну, я стремлюсь создавать современные, 
+                    функциональные и запоминающиеся решения.
+                </p>
             </div>
-            <div id="mobile-menu" class="hidden md:hidden">
-                <div class="px-2 pt-2 pb-4 space-y-2 sm:px-3 flex flex-col items-center">
-                        <a href="#about" class="block w-full text-center py-2 rounded-md font-medium text-slate-300 hover:bg-slate-700 hover:text-amber-400">ABOUT</a>
-                        <a href="#experience" class="block w-full text-center py-2 rounded-md font-medium text-slate-300 hover:bg-slate-700 hover:text-amber-400">EXPERIENCE</a>
-                        <a href="#education" class="block w-full text-center py-2 rounded-md font-medium text-slate-300 hover:bg-slate-700 hover:text-amber-400">EDUCATION</a>
-                        <a href="https://shokarimov.netlify.app/portfolio" class="block w-full text-center py-2 rounded-md font-medium text-slate-300 hover:bg-slate-700 hover:text-amber-400">PORTFOLIO</a>
-                    <a href="https://shokarimov.netlify.app/contact" class="block w-full text-center mt-2 py-2 rounded-md font-semibold bg-amber-500 text-slate-900 hover:bg-amber-400">
-                        CONTACT
-                    </a>
+        </div>
+    </div>
+
+    <h2 class="container" style="color: #ffffff; padding-top: 6vh;">Опыт работы</h2>
+    <div class="sc-bento-section container">
+    
+        <div class="sc-grid-container">
+            
+            <!-- CARD 1 -->
+            <div class="sc-glass-card" onmousemove="handleStandaloneTilt(event, this)" onmouseleave="resetStandaloneTilt(this)">
+            <div class="sc-card-bevel"></div>
+            <div class="sc-card-noise"></div>
+            <div class="sc-card-glow sc-glow-1"></div>
+            
+            <div class="sc-content-layer">
+                <div>
+                    <!-- Flow Icon SVG -->
+                    <img src="/images/tc_logo_gold.png" class="bento-logos">
+                </div>
+                <div>
+                <h2 class="sc-title">Top Congress</h2>
+                <p class="sc-description">Как графический дизайнер я создавал концепции визуального текста 
+                    и изображений вручную и/или с помощью компьютерных программ, таких 
+                    как Adobe Illustrator, CorelDraw и Adobe Photoshop. Я также разрабатывал 
+                    общий макет и дизайн изготовления баннеров, музейных стендов, рекламы, 
+                    брошюр, журналов и т. д. Кроме того, были такие задачи, как разработка логотипов.</p>
+
                 </div>
             </div>
-        </header>
+            </div>
 
-        <main>
-            <section id="hero" class="min-h-screen flex items-center pt-20">
-                 <div class="max-w-6xl mx-auto w-full flex flex-col-reverse md:flex-row items-center justify-center gap-8 md:gap-16 px-4">
-                    <div class="text-center md:text-left">
-                        <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight drop-shadow-2xl">
-                            Odilbek <span class="text-gradient">Shokarimov</span>
-                        </h1>
-                        <p class="mt-4 text-xl md:text-2xl text-slate-200 drop-shadow-lg max-w-xl">
-                             Graphic Designer, Web Designer & Full-Stack Developer
-                        </p>
-                    </div>
-                     <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-slate-800/50 border-4 border-slate-700 flex-shrink-0 shadow-2xl overflow-hidden">
-                        <img src="images/profile_picture.png" alt="Odilbek Shokarimov Profile Picture" class="w-full h-full object-cover">
-                    </div>
+            <!-- CARD 2 -->
+            <div class="sc-glass-card" onmousemove="handleStandaloneTilt(event, this)" onmouseleave="resetStandaloneTilt(this)">
+            <div class="sc-card-bevel"></div>
+            <div class="sc-card-noise"></div>
+            <div class="sc-card-glow sc-glow-2"></div>
+            
+            <div class="sc-content-layer">
+                <div>
+                    <!-- Flow Icon SVG -->
+                    <img src="/images/safia-img.png" class="bento-logos-s">
                 </div>
-            </section>
+                <div>
+                <h2 class="sc-title">Safia</h2>
+                <p class="sc-description">В мои обязонности входили разработка креативных решений 
+                    для новых продукций компании (уваковки, баннера, плакаты), их адаптирование 
+                    под разные носители и подготовки на печать. А также разработка диджитал медиа 
+                    для социальных сетей и других носителей.</p>
 
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <section id="about" class="my-24">
-                    <h2 class="text-3xl font-bold text-center text-white mb-12">About Me</h2>
-                    <div class="glass-card rounded-xl p-8 md:p-12 text-slate-300 leading-relaxed space-y-4 md:text-lg">
-                        <p>
-                            Skilled Graphic and Web Designer with a solid educational background in Computer Science from UA92 in Manchester, UK. Based in Tashkent, Uzbekistan, I bring a wealth of experience in graphic design and a rapidly growing expertise in full-stack web development.
-                        </p>
-                        <p>
-                            My calm and patient temperament allows me to be productive both in collaborative teams and working individually. I am punctual, detail-oriented, and committed to delivering high-quality work. My perseverance and good sense of humor help me tackle challenges effectively and achieve my goals.
-                        </p>
-                    </div>
-                </section>
+                </div>
+            </div>
+            </div>
 
-                <section id="experience" class="my-24">
-                     <h2 class="text-3xl font-bold text-center text-white mb-12">Experience</h2>
-                     <div class="space-y-8">
-                         <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
-                             <div class="flex flex-col md:flex-row justify-between md:items-center">
-                                 <h3 class="text-xl font-bold text-white">Graphic Designer</h3>
-                                 <p class="text-amber-400 font-semibold mt-1 md:mt-0">2021.12 - 2023.08</p>
-                             </div>
-                             <p class="text-slate-400 mt-1">Top Congress Design & Management - Tashkent, UZB</p>
-                             <p class="mt-4 text-slate-300">
-                                 Created diverse visual concepts and layouts for banners, brochures, corporate reports, and logos using Adobe Suite (Illustrator, Photoshop) and CorelDraw.
-                             </p>
-                         </div>
-                         <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
-                             <div class="flex flex-col md:flex-row justify-between md:items-center">
-                                 <h3 class="text-xl font-bold text-white">Teacher of English and Russian</h3>
-                                  <p class="text-amber-400 font-semibold mt-1 md:mt-0">2019.08 - 2020.04</p>
-                             </div>
-                              <p class="text-slate-400 mt-1">'Good Club' Language School - Andijan, UZB</p>
-                             <p class="mt-4 text-slate-300">
-                                Taught English (Beginner to Pre-IELTS) and Russian (Beginner/Elementary) to groups of students, developing lesson plans and fostering language acquisition.
-                             </p>
-                         </div>
-                     </div>
-                </section>
+            <!-- CARD 3 -->
+            <div class="sc-glass-card" onmousemove="handleStandaloneTilt(event, this)" onmouseleave="resetStandaloneTilt(this)">
+            <div class="sc-card-bevel"></div>
+            <div class="sc-card-noise"></div>
+            <div class="sc-card-glow sc-glow-3"></div>
+            
+            <div class="sc-content-layer">
+                <div>
+                    <!-- Flow Icon SVG -->
+                    <img src="/images/hb_logo.png" class="bento-logos-hb">
+                </div>
+                <div>
+                <h2 class="sc-title">Hamkorbank</h2>
+                <p class="sc-description">В отделе внутренних коммуникаций банка занимался разработкой графических 
+                    материалов для корпоративных и внутренних проектов. Создавал визуальный контент для цифровых и печатных носителей, 
+                    разрабатывал анимационные ролики, съемка и видеомонтаж, и оформление презентационных материалов. 
+                    Также занимался подготовкой различных полиграфических продукций.</p>
                 
-                <section id="education" class="my-24">
-                     <h2 class="text-3xl font-bold text-center text-white mb-12">Education</h2>
-                     <div class="space-y-8">
-                         <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
-                             <div class="flex flex-col md:flex-row justify-between md:items-center">
-                                 <h3 class="text-xl font-bold text-white">Full-Stack Development</h3>
-                                 <p class="text-amber-400 font-semibold mt-1 md:mt-0">2023.09 - 2024.02</p>
-                             </div>
-                             <p class="text-slate-400 mt-1">University Academy 92 - Manchester, UK</p>
-                             <p class="mt-4 text-slate-300">
-                                 Completed an intensive course covering the fundamentals and core skills of both Front-End and Back-End web development.
-                             </p>
-                         </div>
-                         <div class="glass-card rounded-xl p-8 transition-all duration-300 hover:border-amber-400/50">
-                             <div class="flex flex-col md:flex-row justify-between md:items-center">
-                                 <h3 class="text-xl font-bold text-white">BA in Foreign Language and Literature (English)</h3>
-                                  <p class="text-amber-400 font-semibold mt-1 md:mt-0">2018.09 - 2022.06</p>
-                             </div>
-                              <p class="text-slate-400 mt-1">Uzbekistan State World Languages University - Tashkent, UZB</p>
-                             <p class="mt-4 text-slate-300">
-                                Achieved a Bachelor's degree, building a strong foundation in English language, literature, and pedagogy.
-                             </p>
-                         </div>
-                     </div>
-                </section>
+                </div>
             </div>
-        </main>
+            </div>
 
-        <footer class="text-center py-12 border-t border-slate-800/50 bg-slate-900/50">
-             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                 <div class="flex justify-center space-x-6 mb-6">
-                     <a href="https://www.linkedin.com/in/odilbek-shokarimov-9860941b2/" target="_blank" class="text-slate-400 hover:text-amber-400 transition-transform hover:scale-110">
-                         <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/lin-logo.svg" alt="LinkedIn" class="h-8 w-8 filter invert hover:invert-0">
-                     </a>
-                      <a href="https://www.instagram.com/gd_odilbek/" target="_blank" class="text-slate-400 hover:text-amber-400 transition-transform hover:scale-110">
-                         <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/inst-logo.svg" alt="Instagram" class="h-8 w-8 filter invert hover:invert-0">
-                     </a>
-                     <a href="https://twitter.com/Odilbek8010" target="_blank" class="text-slate-400 hover:text-amber-400 transition-transform hover:scale-110">
-                         <img src="https://raw.githubusercontent.com/purpleonyx/MyPortfolioWebsite/main/images/twitter-logo.svg" alt="Twitter" class="h-8 w-8 filter invert hover:invert-0">
-                     </a>
-                 </div>
-                 <p class="text-slate-500 text-sm">
-                     Designed & Built by Odilbek Shokarimov <br>
-                     © 2024 All rights reserved.
-                 </p>
-             </div>
-        </footer>
+        </div>
+    </div>
+
+  <script>
+    // Smooth 3D Interactive Hover Tilt Logic
+    function handleStandaloneTilt(event, card) {
+      const rect = card.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((centerY - y) / centerY) * 10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+      card.style.transform = 'rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) scale3d(1.02, 1.02, 1.02)';
+      card.style.transition = 'transform 0.1s ease-out';
+    }
+
+    function resetStandaloneTilt(card) {
+      card.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      card.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)';
+    }
+  </script>
+
+
+    <h2 class="container" style="color: #ffffff; padding-top: 6vh;">Навыки</h2>
+    <div class="icon-grid container">
+
+        <div>
+            <div class="icon-card" aria-label="Analytics Module">
+                <div class="spotlight"></div>
+                <div class="glow-reflection"></div>
+                <div class="svg-container">
+                    <img src="/images/ai-logo_s.svg">
+                </div>
+            </div>
+            <p class="text-center fs-6 mt-2" style="color: #ffffff;">Adobe Illustrator</p>
+        </div>
+        
+        <div>
+            <div class="icon-card" aria-label="Analytics Module">
+                <div class="spotlight"></div>
+                <div class="glow-reflection"></div>
+                <div class="svg-container">
+                    <img src="/images/ps-logo_s.svg">
+                </div>
+            </div>
+            <p class="text-center fs-6 mt-2" style="color: #ffffff;">Adobe Photoshop</p>
+        </div>
+
+        <div>
+            <div class="icon-card" aria-label="Analytics Module">
+                <div class="spotlight"></div>
+                <div class="glow-reflection"></div>
+                <div class="svg-container">
+                    <img src="/images/ae-logo_s.svg">
+                </div>
+            </div>
+            <p class="text-center fs-6 mt-2" style="color: #ffffff;">Adobe After Effects</p>
+        </div>
+
+        <div>
+            <div class="icon-card" aria-label="Analytics Module">
+                <div class="spotlight"></div>
+                <div class="glow-reflection"></div>
+                <div class="svg-container">
+                    <img src="/images/Adobe_Premiere_Pro_CC_icon_s.svg">
+                </div>
+            </div>
+            <p class="text-center fs-6 mt-2" style="color: #ffffff;">Adobe Premiere Pro</p>
+        </div>
+
+        <div>
+            <div class="icon-card" aria-label="Analytics Module">
+                <div class="spotlight"></div>
+                <div class="glow-reflection"></div>
+                <div class="svg-container">
+                    <img src="/images/figma_s.svg">
+                </div>
+            </div>
+            <p class="text-center fs-6 mt-2" style="color: #ffffff;">Figma</p>
+        </div>
+
+        <div>
+            <div class="icon-card" aria-label="Analytics Module">
+                <div class="spotlight"></div>
+                <div class="glow-reflection"></div>
+                <div class="svg-container">
+                    <img src="/images/3ds_max_s.svg">
+                </div>
+            </div>
+            <p class="text-center fs-6 mt-2" style="color: #ffffff;">3DS Max</p>
+        </div>
 
     </div>
-    
-    <script type="importmap">
-        { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js" } }
-    </script>
-    <script type="module">
-        import * as THREE from 'three';
 
-        // --- Mobile Menu Toggle Logic ---
-        const menuButton = document.getElementById('menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        menuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+    <script>
+        // Spotlight Hover Effect Coordinator
+        const cards = document.querySelectorAll('.icon-card');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left; // x coordinate relative to card
+                const y = e.clientY - rect.top;  // y coordinate relative to card
+
+                // Set custom properties (variables) for the CSS gradient tracking
+                card.style.setProperty('--mx', `${x}px`);
+                card.style.setProperty('--my', `${y}px`);
+            });
         });
-
-        // --- Custom Cursor Logic ---
-        const cursorFollower = document.getElementById('cursor-follower');
-        
-        if (window.matchMedia('(hover: hover)').matches) {
-            window.addEventListener('mousemove', e => {
-                cursorFollower.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-            });
-        }
-
-
-        // --- Three.js Background Logic ---
-        let scene, camera, renderer;
-        const objects = [];
-
-        function init() {
-            // Scene setup
-            scene = new THREE.Scene();
-            
-            // Camera setup
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.z = 5;
-
-            // Renderer setup
-            const canvas = document.getElementById('bg-canvas');
-            renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-            // Lighting
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
-            scene.add(ambientLight);
-            const pointLight = new THREE.PointLight(0xffffff, 0.8);
-            pointLight.position.set(5, 5, 5);
-            scene.add(pointLight);
-
-            // Create floating objects
-            const geometry = new THREE.IcosahedronGeometry(1, 1);
-            const material = new THREE.MeshStandardMaterial({
-                color: 0x334155, // Slate 700
-                roughness: 0.5,
-                metalness: 0.8,
-                transparent: true,
-                opacity: 0.2
-            });
-
-            for (let i = 0; i < 15; i++) {
-                const mesh = new THREE.Mesh(geometry, material);
-                mesh.position.set(
-                    (Math.random() - 0.5) * 25,
-                    (Math.random() - 0.5) * 25,
-                    (Math.random() - 0.5) * 25
-                );
-                mesh.scale.setScalar(Math.random() * 0.5 + 0.2);
-                mesh.rotation.set(
-                    Math.random() * Math.PI,
-                    Math.random() * Math.PI,
-                    Math.random() * Math.PI
-                );
-                scene.add(mesh);
-                objects.push(mesh);
-            }
-            
-            // Create the dot field
-            const dotCount = 10000;
-            const positions = new Float32Array(dotCount * 3);
-            const dotGeometry = new THREE.BufferGeometry();
-
-            for(let i = 0; i < dotCount * 3; i++) {
-                positions[i] = (Math.random() - 0.5) * 50;
-            }
-            dotGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-            const dotMaterial = new THREE.PointsMaterial({
-                size: 0.025,
-                color: 0x475569 // Slate-600
-            });
-
-            const dots = new THREE.Points(dotGeometry, dotMaterial);
-            scene.add(dots);
-
-            // Event Listeners
-            window.addEventListener('resize', onWindowResize);
-            window.addEventListener('scroll', onScroll);
-
-            animate();
-        }
-
-        // Handle window resizing
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-
-        // Handle scroll for parallax
-        function onScroll() {
-            const scrollY = window.scrollY;
-            camera.position.y = -scrollY * 0.003; 
-        }
-
-        // Animation loop
-        function animate() {
-            requestAnimationFrame(animate);
-            
-            // Animate larger objects
-            objects.forEach(obj => {
-                obj.rotation.x += 0.001;
-                obj.rotation.y += 0.001;
-            });
-
-            renderer.render(scene, camera);
-        }
-
-        init();
     </script>
 </body>
+
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <span class="mb-3 mb-md-0" style="color: #ffffff;">© 2026 Odilbek Shokarimov</span>
+        </div>
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3">
+                <a href="https://www.instagram.com/gd_odilbek/">
+                    <img src="images/inst-logo.svg" alt="Instagram" style="height: 35px; width: auto;">
+                </a>
+            </li>
+            <li class="ms-3">
+                <a href="https://www.linkedin.com/in/odilbek-shokarimov-9860941b2/">
+                    <img src="images/lin-logo.svg" alt="LinkedIn" style="height: 35px; width: auto;">
+                </a>
+            </li>
+        </ul>
+    </footer>
+</div>
+
 </html>
