@@ -411,8 +411,6 @@
 
         /* SVG Icon Wrappers & Core Animation */
         .svg-container {
-            width: 44%;
-            height: 44%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -421,7 +419,7 @@
         }
 
         .svg-logo-skill {
-            width: auto;
+            width: 45%;
             height: auto;
         }
 
