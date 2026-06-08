@@ -152,7 +152,7 @@
       perspective: 1200px;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 999px) {
       .sc-grid-container {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -329,15 +329,15 @@
         /* Responsive Breakpoints */
         @media (max-width: 768px) {
             .icon-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
                 max-width: 400px;
             }
         }
 
-        @media (max-width: 400px) {
+        @media (max-width: 430px) {
             .icon-grid {
-                grid-template-columns: 1fr;
-                max-width: 200px;
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 300px;
             }
         }
 

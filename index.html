@@ -92,6 +92,39 @@
             align-items: center;
             gap: 0px;
         }
+
+        #main-hero-pic-sm {
+            display: none;
+            max-width: 75vw;
+            padding-top: 35px;
+            height: auto;
+            margin: 0px;
+            margin-bottom: -3px;
+        }
+
+        @media only screen and (max-width: 900px) {
+            #main-hero-pic {
+                display: none;
+            }
+
+            #main-hero-pic-sm {
+                display: flex;
+            }
+        }
+
+        @media only screen and (max-width: 689px) {
+            nav {
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+            }
+        }
+
+        @media only screen and (max-width: 429px) {
+            #logo-navbar {
+                height: 20px;
+            }
+        }
     </style>
 </head>
 
@@ -112,6 +145,7 @@
 
     <div class="main-hero-sec-with-pic">
         <img src="/images/Asset 1.svg" alt="My Main Hero Picture that says I'm a Digital Creator" id="main-hero-pic">
+        <img src="/images/Asset 5.svg" alt="My Main Hero Picture that says I'm a Digital Creator" id="main-hero-pic-sm">
         <div class="px-4 py-5 text-center bg-light" style="margin-top: 0px;">
             <h1 class="display-5 fw-bold text-body-emphasis mb-3">Одилбек Шокаримов</h1>
             <div class="col-lg-6 mx-auto">

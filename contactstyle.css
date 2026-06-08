@@ -185,3 +185,34 @@
         .icon-circle-image {
             width: 40px;
         }
+
+        @media only screen and (max-width: 689px) {
+            .buttons-wrapper {
+                gap: 20px;
+                max-width: 300px;
+                margin-top: 5vh;
+                margin-bottom: 6vh;
+            }
+            
+            .glass-btn {
+                width: 100%;
+                max-width: 450px;
+                height: 70px;
+                padding: 0 8px;
+            }
+
+            .btn-label {
+                font-size: 1.5rem;
+                margin-left: 15px;
+                font-weight: 500;
+            }
+
+            .icon-circle {
+                width: 55px;
+                height: 55px;
+            }
+
+            .icon-circle-image {
+                width: 32px;
+            }
+        }

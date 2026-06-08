@@ -17,28 +17,9 @@
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            /* justify-content: center; */
+            justify-content: center;
             gap: 24px;
         }
-
-        /* Responsive Media Queries for Grid Columns
-        @media (min-width: 640px) {
-            .portfolio-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .portfolio-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (min-width: 1280px) {
-            .portfolio-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        } */
 
         /* Individual Card Container with 4:3 Aspect Ratio */
         .portfolio-card {
@@ -251,4 +232,146 @@
 
         .portfolio-card-3d:hover .card-overlay {
             opacity: 1;
+        }
+
+        .portfolio-card-3d2 {
+            position: relative;
+            max-width: 15vw;
+            aspect-ratio: 4 / 3;
+            background-color: #cbd5e1; /* Background placeholder color */
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+            transition: var(--transition-smooth);
+        }
+
+        .portfolio-card-3d2:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -5px rgba(15, 23, 42, 0.15);
+        }
+
+        /* Card Image Elements */
+        .portfolio-card-3d2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: var(--transition-smooth);
+            display: block;
+        }
+
+        .portfolio-card-3d2:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-card-3d2:hover .card-overlay {
+            opacity: 1;
+        }
+
+        @media only screen and (max-width: 1350px) {
+            .lightbox-content-wrapper {
+                max-width: 85vw;
+                height: auto;
+                max-height: 95vh;
+            }
+        }
+
+        @media only screen and (max-width: 900px) {
+            .portfolio-grid {
+                gap: 12px;
+            }
+
+            .portfolio-card {
+                max-width: 25vw;
+            }
+        }
+
+        @media only screen and (max-width: 769px) {
+            .portfolio-grid {
+                gap: 8px;
+            }
+
+            .portfolio-card {
+                max-width: 40vw;
+            }
+        }
+
+        @media only screen and (max-width: 900px) {
+
+            .portfolio-card-post {
+                max-width: 25vw;
+            }
+        }
+
+        @media only screen and (max-width: 769px) {
+
+            .portfolio-card-post {
+                max-width: 40vw;
+            }
+        }
+
+        @media only screen and (max-width: 1632px) {
+
+            .portfolio-card-3d2 {
+                aspect-ratio: 3 / 4;
+            }
+        }
+
+        @media only screen and (max-width: 1400px) {
+
+            .portfolio-card-3d2 {
+                aspect-ratio: 4 / 3;
+            }
+        }
+
+        @media only screen and (max-width: 1393px) {
+
+            .portfolio-card-3d2 {
+                aspect-ratio: 3 / 4;
+            }
+        }
+
+        @media only screen and (max-width: 1200px) {
+
+            .portfolio-card-3d2 {
+                aspect-ratio: 4 / 3;
+            }
+        }
+
+        @media only screen and (max-width: 1153px) {
+
+            .portfolio-card-3d2 {
+                aspect-ratio: 3 / 4;
+            }
+        }
+
+        @media only screen and (max-width: 992px) {
+
+            .portfolio-card-3d2 {
+                aspect-ratio: 4 / 3;
+            }
+        }
+
+        @media only screen and (max-width: 897px) {
+
+            .portfolio-card-3d2 {
+                aspect-ratio: 3 / 4;
+                max-width: 25vw;
+            }
+
+            .portfolio-card-3d {
+                max-width: 25vw;
+            }
+        }
+
+        @media only screen and (max-width: 769px) {
+
+            .portfolio-card-3d2 {
+                max-width: 40vw;
+            }
+
+            .portfolio-card-3d {
+                max-width: 40vw;
+            }
         }
