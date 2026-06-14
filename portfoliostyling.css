@@ -18,7 +18,7 @@
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            gap: 24px;
+            gap: 12px;
         }
 
         /* Individual Card Container with 4:3 Aspect Ratio */
@@ -275,11 +275,15 @@
                 height: auto;
                 max-height: 95vh;
             }
+
+            .portfolio-grid {
+                gap: 6px;
+            }
         }
 
         @media only screen and (max-width: 900px) {
             .portfolio-grid {
-                gap: 12px;
+                gap: 4px;
             }
 
             .portfolio-card {
@@ -289,7 +293,7 @@
 
         @media only screen and (max-width: 769px) {
             .portfolio-grid {
-                gap: 8px;
+                gap: 6px;
             }
 
             .portfolio-card {
